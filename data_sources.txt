@@ -1,0 +1,7 @@
+http://www.governing.com/gov-data/new-york-gentrification-maps-demographic-data.html
+  - helpful quantative information about defining whether a tract has been "gentrified"
+  - also includes NYC gentrification map, and links to other data
+http://www.governing.com/gov-data/portland-gentrification-maps-demographic-data.html
+  - same as above but for Portland, OR (better than NYC's??)
+https://www.pdx.edu/prc/census-data-for-oregon
+  - oregon census info (block groups/tracts?)
