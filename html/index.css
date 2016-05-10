@@ -1,0 +1,45 @@
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzKRDOzjiPcYnFooOUGCOsRk.woff) format('woff');
+}
+body{
+  font-family: 'Open Sans';
+}
+#page_title p{
+  text-align: center;
+  font-size: 2em;
+  margin: 0 auto;
+  margin-top: 25px;
+}
+div.container{
+
+}
+#top_L{
+  float: left;
+  margin-top: inherit;
+  width:50%;
+}
+#top_R{
+  float: right;
+  margin-top: inherit;
+  width:50%;
+}
+#bottom_L{
+  float: left;
+  margin-top: inherit;
+  width:50%;
+}
+#bottom_R{
+  float: right;
+  margin-top: inherit;
+  width:50%;
+}
+#bottom_R h3{
+  text-align: center;
+}
+#bottom_R p{
+
+}
