@@ -5,45 +5,7 @@
 		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 		<script src="http://d3js.org/topojson.v1.min.js"></script>
 
-		<style type="text/css">
-
-
-
-			path.country{
-				fill: none;
-				stroke:lightgrey;
-			}
-
-
-			path.IRL{
-				fill: lightgrey;
-			}
-
-			#map{
-				float:left;
-			}
-
-			#legend{
-				float:left;
-			}
-
-			#legend li{
-				list-style-type:none;
-				font-family: sans-serif;
-			}
-
-			#answers{
-				clear: both;
-			}
-
-
-			.hidden{
-				display:none;
-			}
-
-
-
-		</style>
+    	<link rel="stylesheet" type="text/css" href="/css/map.css">
 	</head>
 	<body>
 
@@ -54,13 +16,15 @@
 		var width = 600, height =900;
 		var svg = d3.select("#map")
 		.append("svg")
-					.attr({"width":width, "height":height});
+		.attr({"width":width, "height":height});
+
+
 
 			// create the projection
 			var projection = d3.geo.conicEqualArea()
 			.parallels([40.5627805,40.8473945])
 			.translate([width/2,height/2])
-			.scale([4500])
+			.scale([1000])
 			.center([40.716760,-73.991769])
 			.rotate([-0.1702675,0]);
 
@@ -69,40 +33,33 @@
 
 
 
-		// we grab the TopoJSON file from the server
+		// fetch geojson
 		d3.json("/data/nyct-final.geojson",function (mapData) {
-			/*
-				Draw the map. You will need to use the topojson library.
+				// create a map of our census data, so we can easily find records
+				// correspondng to a particular state
+				var nycMap = d3.map();
+				mapData.forEach(function(d){nycMap.set(d.id,d)});
 
-				Look in the topojson file to figure out where the features are stored.
-				HINT: You are just drawing the countries of the UK.
+				// loop through all of the path data, attaching the appropriate
+				// record to each one based on the name
+				for (var i = 0; i < mapData.features.length; i++){
+					var name = mapData.features[i].properties.name;
+					mapData.features[i].properties.value = nycMap.get(name);
+				}
 
-				Each country should have two classes: the id of the country(e.g., IRL), and the value "country"
-				*/
-				svg.selectAll("path")
-				.data(topojson.feature(mapData, mapData.objects.uk_countries).features)
+				// create the states in the SVG
+				var tracts = svg.selectAll("path")
+				.data(mapData.features)
 				.enter()
 				.append("path")
-				.attr("d",path)
-				.attr("id", function(d){
-					return d.id;
-				} )
-				.attr("class", function(d){
-					return d.properties.name;
-				} )
-				.style("fill", "white")
-				.style("stroke","gray");
+				.attr("d", path)
+				.attr("class","tract");
+		});
 
-
-
-
-
+			
 
 
 
 		</script>
-
-
-
 	</body>
 </html>
