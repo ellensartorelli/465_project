@@ -16,7 +16,12 @@
 		clear: both;
 	}
 
-
 	.hidden{
 		display:none;
+	}
+	path{
+		fill: none;
+	}
+	path.tract{
+		stroke:lightgrey;
 	}
