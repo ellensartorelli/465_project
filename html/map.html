@@ -14,20 +14,20 @@
 		<div id="legend"></div>
 
 		<script type="text/javascript">
-		var width = 600, height =900;
+		var width = 1200, height =1200;
 		var svg = d3.select("#map")
 		.append("svg")
 		.attr({"width":width, "height":height});
 
 
 
-			// create the projection
-			var projection = d3.geo.conicEqualArea()
-			.parallels([40.5627805,40.8473945])
-			.translate([width/2,height/2])
-			.scale([4500])
-			.center([40.716760,-73.991769])
-			.rotate([-0.1702675,0]);
+		var projection = d3.geo.mercator()
+   					.center([-73.94, 40.70])
+   					.scale(50000)
+   					.translate([(width) / 2, (height)/2]);
+
+		//try mercator
+
 
 			// create the path tool
 			var path = d3.geo.path().projection(projection);
@@ -35,24 +35,21 @@
 
 
 		// fetch geojson
-		d3.json("/data/nyct-final.geojson",function (mapData) {
+		d3.json("/data/nyct_final.topojson",function (mapData) {
 
-				var data = nest(mapData);
-				// create a map of our census data, so we can easily find records
-				// correspondng to a particular state
-				var nycMap = d3.map();
-				data.forEach(function(d){nycMap.set(d.id,d)});
 
-				// create the states in the SVG
-				var tracts = svg.selectAll("path")
-				.data(data)
-				.enter()
-				.append("path")
-				.attr("d", path)
-				.attr("class","tract");
+			var features = topojson.feature(mapData, mapData.objects["nyct-final"]).features;
+
+			var paths = svg.selectAll("path")
+			.data(topojson.feature(mapData, mapData.objects["nyct-final"]).features)
+			.enter()
+			.append("path")
+			.attr("d",path)
+			.attr("class", "tract");
+
 		});
 
-			
+
 
 
 
