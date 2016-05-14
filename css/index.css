@@ -43,4 +43,14 @@ div.container{
   margin-left: 20px;
   margin-right: 20px;
 }
+#project_info{
+  font-size: 11px;
+  font-family: sans-serif;
+}
+a:link {
+    color: #528B8B;
+}
+a:visited {
+    color: #528B8B;
+}
 
