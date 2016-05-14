@@ -1,0 +1,12 @@
+#legend{
+	float:right;
+}
+
+#legend li{
+	list-style-type:none;
+	font-family: sans-serif;
+}
+#legend span{
+	font-family: sans-serif;
+	font-size: 12px;
+}

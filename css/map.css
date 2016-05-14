@@ -3,15 +3,6 @@
 		float:left;
 	}
 
-	#legend{
-		float:left;
-	}
-
-	#legend li{
-		list-style-type:none;
-		font-family: sans-serif;
-	}
-
 	#answers{
 		clear: both;
 	}
