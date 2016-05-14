@@ -1,5 +1,5 @@
-function nest(data) {
-  return data.features.map(function(element) {
+function nest(array) {
+  return array.map(function(element) {
     var oldProperties = element.properties;
     element.properties = {
       BoroName : oldProperties.BoroName,
