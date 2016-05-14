@@ -27,7 +27,7 @@
 	  fill: #ccc;
 	  cursor: pointer;
 	}
-	.feature.active {
+	.tract.selected {
 	  fill: orange;
 	}
 	.mesh {
