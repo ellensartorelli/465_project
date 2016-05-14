@@ -15,6 +15,7 @@
 
 		<script type="text/javascript">
 		var width = 1200, height =1200;
+		var selectedTracts = [];
 
 		var svg = d3.select("#map")
 		.append("svg")
@@ -64,15 +65,27 @@ d3.json("../data/nyct_final.topojson",function (mapData) {
 		.append("path")
 		.attr("d",path)
 		.attr("class", "tract")
+		.attr("id", function(d) {return "id" + d.properties.id;})
 		.on("click",clicked);
 	});
 
 
 		/**
-		Catch mouse clicks and either zoom out or zoom in depending on the current state
+		Catch mouse clicks
 		**/
-		function clicked(d) {
-				console.log("CLICKED");
+		function clicked(tract) {
+			var tractId = "#id" + tract.properties.id;
+			var index = selectedTracts.indexOf(tractId);
+			if (index == -1) {
+				selectedTracts.push(tractId);
+				var path = canvas.select(tractId);
+				path.classed("selected", true);
+			} else {
+				selectedTracts.splice(index, 1);
+				var path = canvas.select(tractId);
+				path.classed("selected", false);
+			}
+
 			}
 
 		/**
