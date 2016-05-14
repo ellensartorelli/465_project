@@ -51,6 +51,8 @@ var createMap = function(parent, width, height) {
   .attr("class", "tract")
   .attr("id", function(d) {return "id" + d.properties.id;})
   .on("click",clicked);
+
+  redrawVis();
   });
 
   /**
