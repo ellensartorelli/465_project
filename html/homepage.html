@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../css/index.css">
     <link rel="stylesheet" type="text/css" href="../css/map.css">
     <link rel="stylesheet" type="text/css" href="../css/d3.slider.css">
+    <link rel="stylesheet" type="text/css" href="../css/linegraph.css">
     <script type="text/javascript" src="../scripts/nest.js"></script>
     <script type="text/javascript" src="../scripts/map.js"></script>
     <script type="text/javascript" src="../scripts/linegraph.js"></script>
@@ -50,10 +51,14 @@
 
     <script>
       var selectedTracts = [];
+      var features;
 
       function redrawVis() {
         console.log("redrawing");
-        lineGraph.loadData( selectedTracts.map(function(e){return e.properties;}) );
+        lineGraph.loadData( !features ? [] :
+                            selectedTracts.length === 0 ?
+                            features.map(function(e){return e.properties;}) :
+                            selectedTracts.map(function(e){return e.properties;}) );
         lineGraph();
         //reload data and redrwaw line and bar graphs
       }

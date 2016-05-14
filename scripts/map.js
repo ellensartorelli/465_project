@@ -41,7 +41,7 @@ var createMap = function(parent, width, height) {
 
   mapData.objects["nyct-final"].geometries = nest(mapData.objects["nyct-final"].geometries);
 
-  var features = topojson.feature(mapData, mapData.objects["nyct-final"]).features;
+  features = topojson.feature(mapData, mapData.objects["nyct-final"]).features;
 
   var paths = canvas.selectAll("path")
   .data(features)
