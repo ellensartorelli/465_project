@@ -60,8 +60,6 @@ d3.json("../data/nyct_final.topojson",function (mapData) {
 
 	var features = topojson.feature(mapData, mapData.objects["nyct-final"]).features;
 
-	console.log(features);
-
 	var paths = canvas.selectAll("path")
 	.data(features)
 		.enter()
