@@ -9,7 +9,7 @@ var createLineGraph = function(parent, width, height){
   var yScale1 = d3.scale.linear().range([chartHeight, 0]);
   var yScale2 = d3.scale.linear().range([chartHeight, 0]);
 
-  var xAxis = d3.svg.axis().scale(xScale).orient("bottom");
+  var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(d3.format("d"));
   var yAxis1 = d3.svg.axis().scale(yScale1).orient("left");
   var yAxis2 = d3.svg.axis().scale(yScale2).orient("right");
 
