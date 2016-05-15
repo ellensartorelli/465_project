@@ -1,7 +1,7 @@
 var createLineGraph = function(parent, width, height){
   var dataset;
 
-  var margins = {top:20, bottom:60, left: 60, right:20};
+  var margins = {top:20, bottom:60, left: 60, right:50};
   var chartWidth = width - margins.left - margins.right;
   var chartHeight = height - margins.top - margins.bottom;
 
@@ -28,7 +28,8 @@ var createLineGraph = function(parent, width, height){
     .attr({"class": "axis"});
 
   var yAxis2G = chart.append("g")
-    .attr({"class": "axis"});
+    .attr({"class": "axis",
+        "transform": "translate(" + chartWidth + ",0)"});
 
 
   var vis = function(){
