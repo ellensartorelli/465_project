@@ -10,12 +10,15 @@
     <link rel="stylesheet" type="text/css" href="../css/metric.css">
     <link rel="stylesheet" type="text/css" href="../css/d3.slider.css">
     <link rel="stylesheet" type="text/css" href="../css/linegraph.css">
+    <link rel="stylesheet" type="text/css" href="../css/toolbox.css">
     <script type="text/javascript" src="../scripts/nest.js"></script>
     <script type="text/javascript" src="../scripts/map.js"></script>
     <script type="text/javascript" src="../scripts/linegraph.js"></script>
     <script type="text/javascript" src="../scripts/d3.slider.js"></script>
     <script type="text/javascript" src="../scripts/slider.js"></script>
     <script type="text/javascript" src="../scripts/createMetric.js"></script>
+    <script type="text/javascript" src="../scripts/createToolbox.js"></script>
+    <script type="text/javascript" src="../scripts/setTool.js"></script>
 
   </head>
   <body>
@@ -55,6 +58,7 @@
       var selectedTracts = [];
       var features;
       var metricDict = {"mhinc": "Median Household Income", "pcol": "Percent w. College Degree", "mhv": "Median Home Value", "black": "Percent Black", "white":"Percent White", "pop": "Total Population", "mrent": "Median Rent Price"};
+      var tools_bools = {"Selection": false, "Brushing": false, "Panning": false, "Clear All": false};
 
       function redrawVis() {
         console.log("redrawing");
@@ -69,6 +73,7 @@
       createMap("#map", 500, 500);
       createSlider("#map", 500);
       createMetric("#map", metricDict);
+      createToolbox("#map");
       var lineGraph = createLineGraph("#linegraph", 500, 500);
 
       redrawVis();

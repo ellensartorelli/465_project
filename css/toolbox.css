@@ -1,0 +1,20 @@
+.Panning{
+	background-image: url('../panning.png');
+	display:block;
+	padding-left: 27px;
+}
+.Brushing{
+	background-image: url('../brushing.png');
+	display:block;
+}
+.Selection{
+	background-image: url('../selection.png');
+	display:block;
+}
+#toolbox li{
+	list-style-type:none;
+	font-family: sans-serif;
+}
+#toolbox{
+	float: left;
+}
