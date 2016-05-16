@@ -6,7 +6,9 @@ function createMetric(parent, metricDict){
 			data.push(metricDict[key]);
 		};
 
-		var color = d3.scale.category10().domain(data);
+		var color = d3.scale.ordinal(data)
+					.range(["#6baed6", "#74c476", "#9e9ac8", "#fd8d3c", "#fb6a4a", "#969696"]);
+					//blue:mhinc, green:pcol, purple:mhval, oragne:black, red:white, black:rent
 
 
 		var legend =d3.selectAll(parent)
@@ -45,5 +47,5 @@ function createMetric(parent, metricDict){
 
 		list_item.append("span")
 			.text(function(d){return d;});
-	
+
 };
