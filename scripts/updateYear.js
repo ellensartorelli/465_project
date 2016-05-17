@@ -1,6 +1,7 @@
-function updateYear(yearToCheck){
+var updateYear = function(yearToCheck){
+  console.log(year);
   if(yearToCheck != year){
     year = yearToCheck;
-    //call recolor
+    recolorMap();
   }
 };
