@@ -15,6 +15,7 @@ function createSlider(parent, width){
 		.tickFormat(d3.format("d"));
 	// Render the slider in the div
 	d3.select('#slider').call(slider1);
+	slider1.value(1970);
 
 	slider1.callback(function(slider){
 			updateYear(slider.value());
