@@ -42,6 +42,7 @@ function createMetric(parent, metricDict){
 					//SEND THIS VALUE TO SET THE METRIC TO BE DISPLAYED ON THE MAP
 					//SEND THIS VALUE TO HIGHLIGHT LINE IN LINE GRAPH
 					//SENT THIS VALUE TO BE HIGHLIGHTED BAR IN BAR CHART
+					metric = this.value;
 			});
 
 

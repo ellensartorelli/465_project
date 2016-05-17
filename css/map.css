@@ -14,7 +14,7 @@
 				  pointer-events: all;
 				}
 	.tract {
-	  fill: #ccc;
+	  /*fill: #ccc;*/
 	  cursor: pointer;
 	}
 	.tract.selected {

@@ -105,6 +105,16 @@ var createLineGraph = function(parent, width, height){
         .attr("d", function(d){return line(d.values)})
         .style("fill","None");
 
+    //     
+  	// //draw circles
+  	// groups.selectAll("circle")
+  	// 			.data(function(d){return d.values;})
+  	//   		.enter()
+  	//   		.append("circle")
+  	//   		.attr({cx:function(d){return xScale(+d.year);},
+  	//   						cy:function(d){ return yScale(+d.circumference);},
+  	//   						r:3	});
+
 
 
     xAxisG.call(xAxis);
