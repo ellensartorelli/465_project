@@ -157,7 +157,7 @@ var recolorMap = function() {
     .transition(1000)
     .style("fill", fillColor);
 
-  // createKey("#map", colorScale);
+  createKey("#map", colorScale);
 }
 
 function findMin(d) {
