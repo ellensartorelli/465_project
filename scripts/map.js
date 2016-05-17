@@ -77,9 +77,16 @@ var createMap = function(parent, width, height) {
   .enter()
   .append("path")
   .attr("d",path)
-  .attr("class", "tract")
+  .attr("class", "tract panning_mode")
   .attr("id", function(d) {return "id" + d.properties.id;})
-  //.style("fill", function(d){return color_black(+d.properties.black[2010]);})
+  // .attr("class", function(d) {
+  //   console.log(tools_bools);
+  //   if(tools_bools["Selection"]==true){
+  //     return "tract selection_mode";
+  //   }else{
+  //     return "tract panning_mode";
+  //   };
+  // })
   .on("click",clicked);
 
   recolorMap();
@@ -90,20 +97,22 @@ var createMap = function(parent, width, height) {
   Catch mouse clicks
   **/
   function clicked(tract) {
-    var tractId = "#id" + tract.properties.id;
-    var index = selectedTracts.indexOf(tract, function(element) {
-      return element.properties.id == tract.properties.id;
-    });
-    if (index == -1) {
-      selectedTracts.push(tract);
-      var path = canvas.select(tractId);
-      path.classed("selected", true);
-    } else {
-      selectedTracts.splice(index, 1);
-      var path = canvas.select(tractId);
-      path.classed("selected", false);
+    if(tools_bools["Selection"]==true){
+      var tractId = "#id" + tract.properties.id;
+      var index = selectedTracts.indexOf(tract, function(element) {
+        return element.properties.id == tract.properties.id;
+      });
+      if (index == -1) {
+        selectedTracts.push(tract);
+        var path = canvas.select(tractId);
+        path.classed("selected", true);
+      } else {
+        selectedTracts.splice(index, 1);
+        var path = canvas.select(tractId);
+        path.classed("selected", false);
+      }
+      redrawVis();
     }
-    redrawVis();
   }
 
   /**

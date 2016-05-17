@@ -15,7 +15,10 @@
 				}
 	.tract {
 	  /*fill: #ccc;*/
-	  cursor: pointer;
+	  /*cursor: pointer;*/
+	}
+	.panning_mode{
+		cursor: pointer;
 	}
 	.tract.selected {
 	  stroke: #ff0000;
