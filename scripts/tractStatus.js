@@ -8,67 +8,67 @@ function tractStatus(){
 var index_40th = 2137 * 0.4;
 var index_30th = 2137 * 0.66;
 
-
-var mhinc70 = [];
-var mhinc80 = [];
-var mhinc90 = [];
-var mhinc00 = [];
-var mhinc10 = [];
-
-var mhv70 = [];
-var mhv80 = [];
-var mhv90 = [];
-var mhv00 = [];
-var mhv10 = [];
-
-var pcol70 = [];
-var pcol80 = [];
-var pcol90 = [];
-var pcol00 = [];
-var pcol10 = [];
-
-
-var mhinc_array = {
-	1970:  mhinc70,
-	1980:  mhinc80,
-	1990:  mhinc90,
-	2000:  mhinc00,
-	2010:  mhinc10
-};
-
-var mhv_array = {
-	1970:  mhv70,
-	1980:  mhv80,
-	1990:  mhv90,
-	2000:  mhv00,
-	2010:  mhv10
-};
-
-var pcol_array = {
-	1970: pcol70,
-	1980: pcol80,
-	1990: pcol90,
-	2000: pcol00,
-	2010: pcol10
-};
-
-for(var j = 0; j < features.length; j++){
-	mhinc_array[70].push(features[j].properties.mhinc[1970]);
-	mhinc_array[80].push(features[j].properties.mhinc[1980]);
-	mhinc_array[90].push(features[j].properties.mhinc[1990]);
-	mhinc_array[00].push(features[j].properties.mhinc[2000]);
-	mhinc_array[10].push(features[j].properties.mhinc[2010]);
-	mhv70.push(features[j].properties.mhv[1970]);
-	mhv80.push(features[j].properties.mhv[1980]);
-	mhv90.push(features[j].properties.mhv[1990]);
-	mhv00.push(features[j].properties.mhv[2000]);
-	mhv10.push(features[j].properties.mhv[2010]);
-	pcol70.push(features[j].properties.pcol[1970]);
-	pcol80.push(features[j].properties.pcol[1980]);
-	pcol90.push(features[j].properties.pcol[1990]);
-	pcol00.push(features[j].properties.pcol[2000]);
-	pcol10.push(features[j].properties.pcol[2010]);
-};
+//
+// var mhinc70 = [];
+// var mhinc80 = [];
+// var mhinc90 = [];
+// var mhinc00 = [];
+// var mhinc10 = [];
+//
+// var mhv70 = [];
+// var mhv80 = [];
+// var mhv90 = [];
+// var mhv00 = [];
+// var mhv10 = [];
+// 
+// var pcol70 = [];
+// var pcol80 = [];
+// var pcol90 = [];
+// var pcol00 = [];
+// var pcol10 = [];
+//
+//
+// var mhinc_array = {
+// 	1970:  mhinc70,
+// 	1980:  mhinc80,
+// 	1990:  mhinc90,
+// 	2000:  mhinc00,
+// 	2010:  mhinc10
+// };
+//
+// var mhv_array = {
+// 	1970:  mhv70,
+// 	1980:  mhv80,
+// 	1990:  mhv90,
+// 	2000:  mhv00,
+// 	2010:  mhv10
+// };
+//
+// var pcol_array = {
+// 	1970: pcol70,
+// 	1980: pcol80,
+// 	1990: pcol90,
+// 	2000: pcol00,
+// 	2010: pcol10
+// };
+//
+// for(var j = 0; j < features.length; j++){
+// 	mhinc_array[70].push(features[j].properties.mhinc[1970]);
+// 	mhinc_array[80].push(features[j].properties.mhinc[1980]);
+// 	mhinc_array[90].push(features[j].properties.mhinc[1990]);
+// 	mhinc_array[00].push(features[j].properties.mhinc[2000]);
+// 	mhinc_array[10].push(features[j].properties.mhinc[2010]);
+// 	mhv70.push(features[j].properties.mhv[1970]);
+// 	mhv80.push(features[j].properties.mhv[1980]);
+// 	mhv90.push(features[j].properties.mhv[1990]);
+// 	mhv00.push(features[j].properties.mhv[2000]);
+// 	mhv10.push(features[j].properties.mhv[2010]);
+// 	pcol70.push(features[j].properties.pcol[1970]);
+// 	pcol80.push(features[j].properties.pcol[1980]);
+// 	pcol90.push(features[j].properties.pcol[1990]);
+// 	pcol00.push(features[j].properties.pcol[2000]);
+// 	pcol10.push(features[j].properties.pcol[2010]);
+// };
 
 
 //iterate through tracts
