@@ -18,7 +18,8 @@
 	  cursor: pointer;
 	}
 	.tract.selected {
-	  fill: orange;
+	  stroke: #ff0000;
+		stroke-width: 10px:
 	}
 	.mesh {
 	  fill: none;
