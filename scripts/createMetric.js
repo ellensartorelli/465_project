@@ -43,7 +43,7 @@ var createMetric = function(parent) {
 					// 	d3.selectAll("#key").remove();
 					// 	makeLegend("#map", colorScale);
 					// };
-
+					d3.selectAll("#key").remove();
 					metric = this.id;
 					recolorMap();
 			});
