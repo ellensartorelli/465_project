@@ -154,6 +154,7 @@ var recolorMap = function() {
 
   d3.select("#canvas")
     .selectAll(".tract")
+    .transition(1000)
     .style("fill", fillColor);
 }
 
