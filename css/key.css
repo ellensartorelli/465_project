@@ -1,16 +1,17 @@
-#legend{
+#key{
 	float:right;
 }
-#legend li{
+#key li{
 	list-style-type:none;
 	font-family: sans-serif;
+	line-height: 13px;
 }
-#legend span{
+#key span{
 	font-family: sans-serif;
 	font-size: 12px;
 }
-#legend ul{
-/*	not sure if this is doing anything? will have to be edited eventually*/
+#key ul{
+/*	not sure if this is doing anything?*/
   padding:0;
   margin-left:0px;
   padding-right: 20px;

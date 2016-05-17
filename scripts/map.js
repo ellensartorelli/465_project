@@ -156,6 +156,8 @@ var recolorMap = function() {
     .selectAll(".tract")
     .transition(1000)
     .style("fill", fillColor);
+
+  // createKey("#map", colorScale);
 }
 
 function findMin(d) {

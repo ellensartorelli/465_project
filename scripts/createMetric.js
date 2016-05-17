@@ -5,7 +5,7 @@ var createMetric = function(parent) {
 					//blue:mhinc, green:pcol, purple:mhval, oragne:black, red:white, black:rent
 
 
-		var legend =d3.selectAll(parent)
+		var legend = d3.selectAll(parent)
 			.append("ul")
 			.attr("id", "legend");
 
@@ -37,6 +37,13 @@ var createMetric = function(parent) {
 					//SEND THIS VALUE TO SET THE METRIC TO BE DISPLAYED ON THE MAP
 					//SEND THIS VALUE TO HIGHLIGHT LINE IN LINE GRAPH
 					//SENT THIS VALUE TO BE HIGHLIGHTED BAR IN BAR CHART
+
+					// var update = updateKey(this.value);
+					// if(update == true){//clear legend
+					// 	d3.selectAll("#key").remove();
+					// 	makeLegend("#map", colorScale);
+					// };
+
 					metric = this.id;
 					recolorMap();
 			});
