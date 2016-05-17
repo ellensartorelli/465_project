@@ -146,7 +146,7 @@ var recolorMap = function() {
   colorScale.domain([d3.min(features, findMin), d3.max(features, findMax)]);
 
   function fillColor(d) {
-    if (+d.properties[metric][year] !== 0) {
+    if (+d.properties[metric][year] >= 1) {
       return colorScale(+d.properties[metric][year]);
     }
     return "#d3d3d3";
