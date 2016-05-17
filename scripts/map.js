@@ -131,7 +131,7 @@ var recolorMap = function() {
   var colorScale = d3.scale.quantize();
 
   var nColors = 7;
-  var colors = { //TODO: precompute domains
+  var colors = { //TODO: see precompute domains is the correct thing to do
     mhinc: colorbrewer.Blues[nColors],
     mhv: colorbrewer.Purples[nColors],
     pwhite: colorbrewer.Reds[nColors],
@@ -143,10 +143,32 @@ var recolorMap = function() {
   console.log("ranging on metric: " + metric);
   console.log("with year: " + year);
   colorScale.range(colors[metric]);
-  colorScale.domain(d3.extent(features, function(d) {return +d.properties[metric][year];}));
+  colorScale.domain([d3.min(features, findMin), d3.max(features, findMax)]);
+
+  function fillColor(d) {
+    if (+d.properties[metric][year] !== 0) {
+      return colorScale(+d.properties[metric][year]);
+    }
+    return "#d3d3d3";
+  }
 
   d3.select("#canvas")
     .selectAll(".tract")
-    .style("fill", function(d) {return colorScale(d.properties[metric][year])});
+    .style("fill", fillColor);
+}
 
+function findMin(d) {
+  var min = d.properties[metric]["1970"];
+  for (prop in d.properties[metric]) {
+    min = Math.min(d.properties[metric][prop], min);
+  }
+  return min;
+}
+
+function findMax(d) {
+  var max = d.properties[metric]["1970"];
+  for (prop in d.properties[metric]) {
+    max = Math.max(d.properties[metric][prop], max);
+  }
+  return max;
 }
