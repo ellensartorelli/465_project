@@ -1,12 +1,6 @@
-function createMetric(parent, metricDict){
+var createMetric = function(parent) {
 
-		var data = [];
-
-		for(key in metricDict){
-			data.push(metricDict[key]);
-		};
-
-		var color = d3.scale.ordinal(data)
+		var color = d3.scale.ordinal(metricList.map(function(d){return d.abbr}))
 					.range(["#6baed6", "#74c476", "#9e9ac8", "#fd8d3c", "#fb6a4a", "#969696"]);
 					//blue:mhinc, green:pcol, purple:mhval, oragne:black, red:white, black:rent
 
@@ -16,7 +10,7 @@ function createMetric(parent, metricDict){
 			.attr("id", "legend");
 
 		var list_item = legend.selectAll("ul")
-			.data(data)
+			.data(metricList)
 			.enter()
 		 	.append("li");
 
@@ -25,7 +19,7 @@ function createMetric(parent, metricDict){
 				"padding-left":"11px",
 				"margin-right":"3px",
 				"background-color":function(d){
-					return color(d);
+					return color(d.abbr);
 				}
 			});
 
@@ -33,8 +27,9 @@ function createMetric(parent, metricDict){
 			.attr({
 				"type": "radio",
 				"value": function(d){
-					return d;
+					return d.name;
 				},
+				"id": function(d) {return d.abbr;},
 				"name": "metricToMap"
 			})
 			.on("change", function(){
@@ -42,11 +37,12 @@ function createMetric(parent, metricDict){
 					//SEND THIS VALUE TO SET THE METRIC TO BE DISPLAYED ON THE MAP
 					//SEND THIS VALUE TO HIGHLIGHT LINE IN LINE GRAPH
 					//SENT THIS VALUE TO BE HIGHLIGHTED BAR IN BAR CHART
-					metric = this.value;
+					metric = this.id;
+					recolorMap();
 			});
 
 
 		list_item.append("span")
-			.text(function(d){return d;});
+			.text(function(d){return d.name;});
 
 };

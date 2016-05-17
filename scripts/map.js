@@ -11,7 +11,7 @@ var createMap = function(parent, width, height) {
   .attr("height", height);
 
   // create the canvas
-  var canvas = svg.append("g");
+  var canvas = svg.append("g").attr("id", "canvas");
 
   // the "zoomed" state
   var active = d3.select(null);
@@ -27,20 +27,13 @@ var createMap = function(parent, width, height) {
     // var color = d3.scale.quantile()
     // .range(colorScheme[5]);
 
-  var colors = [];
-    var color_mhinc = d3.scale.quantize().range(colorbrewer.Blues[5]);
-    var color_mhval = d3.scale.quantize().range(colorbrewer.Purples[5]);
-    var color_white = d3.scale.quantize().range(colorbrewer.Reds[5]);
-    // var color_black = d3.scale.quantize().range(colorbrewer.Oranges[5]);
-    var color_black = d3.scale.linear().range(["blue", "red"]);
-    var color_pcol = d3.scale.quantize().range(colorbrewer.Greens[5]);
-    var color_mrent = d3.scale.quantize().range(colorbrewer.Greys[5]);
-  colors.push(color_mhinc);
-  colors.push(color_mhval);
-  colors.push(color_white);
-  colors.push(color_black);
-  colors.push(color_mrent);
-  colors.push(color_pcol);
+
+  // colors.push(color_mhinc);
+  // colors.push(color_mhval);
+  // colors.push(color_white);
+  // colors.push(color_black);
+  // colors.push(color_mrent);
+  // colors.push(color_pcol);
 
   // load the zoom behavior into the SVG
   svg.call(zoom)
@@ -62,14 +55,22 @@ var createMap = function(parent, width, height) {
 
   features = topojson.feature(mapData, mapData.objects["nyct-final"]).features;
 
-
-  color_black.domain(d3.extent(features, function(d){return +d.properties.black[2010];}));
+  // color_black.domain(d3.extent(features, function(d){return +d.properties.black[2010];}));
 
   // color_mhval.domain(d3.extent(features,function(d){return +d.properties.metric[year];}));
   // color_white.domain(d3.extent(features,function(d){return +d.properties.metric[year];}));
   // color_mhinc.domain(d3.extent(features,function(d){return +d.properties.metric[year];}));
   // color_pcol.domain(d3.extent(features,function(d){return +d.properties.metric[year];}));
   // color_mrent.domain(d3.extent(features,function(d){return +d.properties.metric[year];}));
+
+  features.forEach(function(element) {
+    element.properties.pwhite = {};
+    element.properties.pblack = {};
+    for (year in element.properties.white) {
+      element.properties.pwhite[year] = 100 * element.properties.white[year] / element.properties.pop[year];
+      element.properties.pblack[year] = 100 * element.properties.black[year] / element.properties.pop[year];
+    }
+  });
 
   var paths = canvas.selectAll("path")
   .data(features)
@@ -78,9 +79,10 @@ var createMap = function(parent, width, height) {
   .attr("d",path)
   .attr("class", "tract")
   .attr("id", function(d) {return "id" + d.properties.id;})
-  .style("fill", function(d){return color_black(+d.properties.black[2010]);})
+  //.style("fill", function(d){return color_black(+d.properties.black[2010]);})
   .on("click",clicked);
 
+  recolorMap();
   redrawVis();
   });
 
@@ -119,4 +121,32 @@ var createMap = function(parent, width, height) {
     }
 
   //TODO: distinguish clicks and panning
+
+}
+
+//TODO: FIGURE OUT DEFAULT VALUES
+var recolorMap = function() {
+  //TODO: if 0 --> noData --> color grey
+  console.log("recolorMap being called");
+  var colorScale = d3.scale.quantize();
+
+  var nColors = 7;
+  var colors = { //TODO: precompute domains
+    mhinc: colorbrewer.Blues[nColors],
+    mhv: colorbrewer.Purples[nColors],
+    pwhite: colorbrewer.Reds[nColors],
+    pblack: colorbrewer.Oranges[nColors],
+    pcol: colorbrewer.Greens[nColors],
+    mrent: colorbrewer.Greys[nColors]
+  };
+
+  console.log("ranging on metric: " + metric);
+  console.log("with year: " + year);
+  colorScale.range(colors[metric]);
+  colorScale.domain(d3.extent(features, function(d) {return +d.properties[metric][year];}));
+
+  d3.select("#canvas")
+    .selectAll(".tract")
+    .style("fill", function(d) {return colorScale(d.properties[metric][year])});
+
 }

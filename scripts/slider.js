@@ -17,6 +17,6 @@ function createSlider(parent, width){
 	d3.select('#slider').call(slider1);
 
 	slider1.callback(function(slider){
-			updateYear(this.value());
+			updateYear(slider.value());
 	});
 };
