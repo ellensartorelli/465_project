@@ -1,15 +1,15 @@
 .Panning{
 	background-image: url('../panning.png');
-	display:block;
+	/*display:block;*/
 	padding-left: 27px;
 }
 .Brushing{
 	background-image: url('../brushing.png');
-	display:block;
+	/*display:block;*/
 }
 .Selection{
 	background-image: url('../selection.png');
-	display:block;
+	/*display:block;*/
 }
 #toolbox li{
 	list-style-type:none;
@@ -17,4 +17,8 @@
 }
 #toolbox{
 	float: left;
+}
+#tool_text{
+	font-size: 11px;
+	background-color: white;
 }

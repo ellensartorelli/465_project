@@ -6,7 +6,7 @@ function createToolbox(parent){
 
 
 		var toolbox_listItem = toolbox.selectAll("ul")
-			.data(["Selection", "Brushing", "Panning", "Clear All"])
+			.data(["Selection", "Brushing", "Panning"])
 			.enter()
 		 	.append("li")
 		 	.attr("id", "toolbox_item");
@@ -18,19 +18,36 @@ function createToolbox(parent){
 			})
 			.style({
 				"padding-left":"23px",
-				"width":"0px",
+				"width":"15px",
 				"height":"23px"
 			});
 
 
-		photo_span.append("input")
+		toolbox_listItem.append("input")
 			.attr({
-				"type": "button",
+				"type": "radio",
 				"id": function(d){
 					return d},
 				"value": function(d){
 					return d;},
+				"name": "tool",
 				"onclick": "setTool(id)"
 			});
 
+		toolbox_listItem.append("span")
+			.attr("id", "tool_text")
+			.text(function(d){return d;});
+
+		var lastItem = toolbox.selectAll("ul")
+			.data(["Clear selections"])
+			.enter()
+			.append("li")
+			.append("input")
+			.attr({
+				"type": "button",
+				"value": function(d){
+					return d;
+				},
+				// "onclick": "clearSelection()"
+			});
 };
