@@ -1,18 +1,16 @@
+var drawKey = function(parent, colorScale){
 
-var createKey = function(parent, color){
+  var key = d3.select(parent).select("#key");
 
-  var key = d3.selectAll(parent)
-    .append("ul")
-    .attr("id", "key");
+  console.log(colorScale.range());
 
-  console.log(color.range());
+  var keyEntries = key.selectAll("li").data(colorScale.range());
+  keyEntries.exit().remove();
+  var listItem = keyEntries.enter().append("li");
+  listItem.append("span").attr("id", "span1");
+  listItem.append("span").attr("id", "span2");
 
-  var keyEntry = key.selectAll('key.ul')
-    .data(color.range())
-    .enter()
-    .append("li");
-
-    keyEntry.append("span")
+    keyEntries.select("#span1")
       .style({
         "padding-left":"11px",
         "margin-right":"3px",
@@ -22,10 +20,10 @@ var createKey = function(parent, color){
         //  "border-bottom":"solid black 1.5px"
       });
 
-  keyEntry.append("span")
+  keyEntries.select("#span2")
       .attr('class', 'text')
       .text(function(d,i) {
-          var extent = color.invertExtent(d);
+          var extent = colorScale.invertExtent(d);
           console.log(extent);
           if(extent[0] < 0){
             extent[0] = 0;

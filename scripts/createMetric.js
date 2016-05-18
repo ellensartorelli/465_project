@@ -4,10 +4,7 @@ var createMetric = function(parent) {
 					.range(["#6baed6", "#74c476", "#9e9ac8", "#fd8d3c", "#fb6a4a", "#969696"]);
 					//blue:mhinc, green:pcol, purple:mhval, oragne:black, red:white, black:rent
 
-
-		var legend = d3.selectAll(parent)
-			.append("ul")
-			.attr("id", "legend");
+		var legend = d3.select(parent).select("#legend");
 
 		var list_item = legend.selectAll("ul")
 			.data(metricList)
@@ -43,7 +40,7 @@ var createMetric = function(parent) {
 					// 	d3.selectAll("#key").remove();
 					// 	makeLegend("#map", colorScale);
 					// };
-					d3.selectAll("#key").remove();
+					//d3.selectAll("#key").remove();
 					metric = this.id;
 					recolorMap();
 			});

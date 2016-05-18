@@ -4,6 +4,14 @@ var createMap = function(parent, width, height) {
   .append("svg")
   .attr({"width":width, "height":height});
 
+  var key = d3.select(parent)
+    .append("ul")
+    .attr("id", "key");
+
+  var legend = d3.select(parent)
+    .append("ul")
+    .attr("id", "legend");
+
   // put in a background to get mouse clicks
   svg.append("rect")
   .attr("class", "background")
@@ -166,7 +174,7 @@ var recolorMap = function() {
     .transition(1000)
     .style("fill", fillColor);
 
-  createKey("#map", colorScale);
+  drawKey("#map", colorScale); //DO NOT USE VARIABLE parent HERE. SCOPING ISSUES
 }
 
 function findMin(d) {
