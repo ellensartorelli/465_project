@@ -1,7 +1,7 @@
 var createMetric = function(parent) {
 
 		var color = d3.scale.ordinal(metricList.map(function(d){return d.abbr}))
-					.range(["#6baed6", "#74c476", "#9e9ac8", "#fd8d3c", "#fb6a4a", "#969696"]);
+					.range(["#6baed6", "#74c476", "#9e9ac8", "#fd8d3c", "#fb6a4a", "#f768a1"]);
 					//blue:mhinc, green:pcol, purple:mhval, oragne:black, red:white, black:rent
 
 		var legend = d3.select(parent).select("#legend");

@@ -168,7 +168,7 @@ var recolorMap = function() {
     pwhite: colorbrewer.Reds[nColors],
     pblack: colorbrewer.Oranges[nColors],
     pcol: colorbrewer.Greens[nColors],
-    mrent: colorbrewer.Greys[nColors]
+    mrent: colorbrewer.RdPu[nColors]
   };
 
   console.log("ranging on metric: " + metric);
