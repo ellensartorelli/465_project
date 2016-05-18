@@ -57,11 +57,11 @@ var createMap = function(parent, width, height) {
 
 
   // fetch geojson
-  d3.json("../data/nyct_final.topojson",function (mapData) {
+  d3.json("../data/nyct2010_3.topojson",function (mapData) {
 
-  mapData.objects["nyct-final"].geometries = nest(mapData.objects["nyct-final"].geometries);
+  mapData.objects["nyct2010_3"].geometries = nest(mapData.objects["nyct2010_3"].geometries);
 
-  features = topojson.feature(mapData, mapData.objects["nyct-final"]).features;
+  features = topojson.feature(mapData, mapData.objects["nyct2010_3"]).features;
 
   // color_black.domain(d3.extent(features, function(d){return +d.properties.black[2010];}));
 
@@ -75,8 +75,13 @@ var createMap = function(parent, width, height) {
     element.properties.pwhite = {};
     element.properties.pblack = {};
     for (year in element.properties.white) {
-      element.properties.pwhite[year] = 100 * element.properties.white[year] / element.properties.pop[year];
-      element.properties.pblack[year] = 100 * element.properties.black[year] / element.properties.pop[year];
+      if (element.properties.pop[year] === 0) {
+        element.properties.pwhite[year] = 0;
+        element.properties.pblack[year] = 0;
+      } else {
+        element.properties.pwhite[year] = 100 * element.properties.white[year] / element.properties.pop[year];
+        element.properties.pblack[year] = 100 * element.properties.black[year] / element.properties.pop[year];
+      }
     }
   });
 

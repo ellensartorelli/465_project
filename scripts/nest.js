@@ -2,58 +2,84 @@ function nest(array) {
 
   oldWords = {
     "black": {
-      "1970" : "70_BLACK70",
-      "1980": "80_NHBLK80",
-      "1990": "90_NHBLK90",
-      "2000": "00_NHBLK00",
-      "2010": "10_nhblk10"
+      "1970" : "BLACK70",
+      "1980": "NHBLK80",
+      "1990": "NHBLK90",
+      "2000": "NHBLK00",
+      "2010": "nhblk10"
     },
     "mhv": {
-      "1970" : "70_MHMVAL70",
-      "1980": "80_MHMVAL80",
-      "1990": "90_MHMVAL90",
-      "2000": "00_MHMVAL00",
-      "2010": "10_mhmval0a"
+      "1970" : "MHMVAL70",
+      "1980": "MHMVAL80",
+      "1990": "MHMVAL90",
+      "2000": "MHMVAL00",
+      "2010": "mhmval0a"
     },
     "mrent": {
-      "1970" : "70_MRENT70",
-      "1980": "80_MRENT80",
-      "1990": "90_MRENT90",
-      "2000": "00_MRENT00",
-      "2010": "10_mrent0a"
+      "1970" : "MRENT70",
+      "1980": "MRENT80",
+      "1990": "MRENT90",
+      "2000": "MRENT00",
+      "2010": "mrent0a"
     },
     "pop": {
-      "1970" : "70_POP70",
-      "1980": "80_POP80",
-      "1990": "90_POP90",
-      "2000": "00_POP00",
-      "2010": "10_pop10"
+      "1970" : "POP70",
+      "1980": "POP80",
+      "1990": "POP90",
+      "2000": "POP00",
+      "2010": "pop10"
     },
     "white": {
-      "1970" : "70_WHITE70",
-      "1980": "80_NHWHT80",
-      "1990": "90_NHWHT90",
-      "2000": "00_NHWHT00",
-      "2010": "10_nhwht10"
+      "1970" : "WHITE70",
+      "1980": "NHWHT80",
+      "1990": "NHWHT90",
+      "2000": "NHWHT00",
+      "2010": "nhwht10"
+    },
+    "mhinc": {
+      "1970" : "HINC70",
+      "1980": "hinc80",
+      "1990": "HINC90",
+      "2000": "HINC00",
+      "2010": "hinc0a"
+    },
+    "pcol": {
+      "1970" : "COL70",
+      "1980": "col80",
+      "1990": "COL90",
+      "2000": "COL00",
+      "2010": "col0a"
     }
   };
 
   return array.map(function(element) {
     var oldProperties = element.properties;
+    //if tract is park
+    if (element.properties.NTAName.substring(0, 17) === "park-cemetery-etc") {
+      element.properties = {
+        BoroName : oldProperties.BoroName,
+        NTAName : oldProperties.NTAName,
+        id : oldProperties.tractID
+      };
+      ["black", "mhinc", "mhv", "mrent", "pcol", "pop", "white"].forEach(function(word){
+        var x = {};
+        ["1970", "1980", "1990", "2000", "2010"].forEach(function(year){
+          x[year] = 0;
+        })
+        element.properties[word] = x;
+      })
+      return element;
+    }
+
     element.properties = {
       BoroName : oldProperties.BoroName,
       NTAName : oldProperties.NTAName,
-      id : oldProperties.id
+      id : oldProperties.tractID
     };
     ["black", "mhinc", "mhv", "mrent", "pcol", "pop", "white"].forEach(function(word){
       var x = {};
       ["1970", "1980", "1990", "2000", "2010"].forEach(function(year){
-        var oldWord;
-        if (word == "mhinc" || word == "pcol") {
-          oldWord = word + "_" + year.slice(-2);
-        } else {
-          oldWord = oldWords[word][year];
-        }
+        var oldWord = oldWords[word][year];
         x[year] = +oldProperties[oldWord];
       })
       element.properties[word] = x;
