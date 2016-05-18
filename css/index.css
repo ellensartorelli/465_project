@@ -25,10 +25,10 @@ div.container{
   float: right; margin-top: inherit; width:50%;
 }
 #bottom_L{
-  float: left; margin-top: inherit; width:50%;
+  float: left; margin-top: inherit; width:100%;
 }
 #bottom_R{
-  float: right; margin-top: inherit; width:50%;
+  float: right; margin-top: inherit; width:100%;
 }
 #bottom_R h3{
   text-align: center;
@@ -53,4 +53,3 @@ a:link {
 a:visited {
     color: #528B8B;
 }
-
