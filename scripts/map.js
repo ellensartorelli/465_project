@@ -120,21 +120,25 @@ var createMap = function(parent, width, height) {
   Catch mouse clicks
   **/
   function clicked(tract) {
-    if(tools_bools["Selection"]==true){
-      var tractId = "#id" + tract.properties.id;
-      var index = selectedTracts.indexOf(tract, function(element) {
-        return element.properties.id == tract.properties.id;
-      });
-      if (index == -1) {
-        selectedTracts.push(tract);
-        var path = canvas.select(tractId);
-        path.classed("selected", true);
-      } else {
-        selectedTracts.splice(index, 1);
-        var path = canvas.select(tractId);
-        path.classed("selected", false);
+    var tractId = "#id" + tract.properties.id;
+    var path = canvas.select(tractId);
+    if (!path.classed("inactive")) {
+      if(tools_bools["Selection"]==true){
+
+        var index = selectedTracts.indexOf(tract, function(element) {
+          return element.properties.id == tract.properties.id;
+        });
+        if (index == -1) {
+          selectedTracts.push(tract);
+          var path = canvas.select(tractId);
+          path.classed("selected", true);
+        } else {
+          selectedTracts.splice(index, 1);
+          var path = canvas.select(tractId);
+          path.classed("selected", false);
+        }
+        redrawVis();
       }
-      redrawVis();
     }
   }
 
@@ -183,8 +187,16 @@ var recolorMap = function() {
     return "#d3d3d3";
   }
 
+  function checkInactive(d) {
+    if (+d.properties[metric][year] > 0) {
+      return false;
+    }
+    return true;
+  }
+
   d3.select("#canvas")
     .selectAll(".tract")
+    .classed("inactive", checkInactive)
     .transition(1000)
     .style("fill", fillColor);
 
