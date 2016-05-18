@@ -1,5 +1,7 @@
 var createMap = function(parent, width, height) {
 
+  var populationCutoff = 25;
+
   var svg = d3.select(parent)
   .append("svg")
   .attr({"width":width, "height":height});
@@ -74,13 +76,21 @@ var createMap = function(parent, width, height) {
   features.forEach(function(element) {
     element.properties.pwhite = {};
     element.properties.pblack = {};
+    element.properties.pcol = {};
     for (year in element.properties.white) {
-      if (element.properties.pop[year] === 0) {
+      if (element.properties.pop[year] < 25) {
         element.properties.pwhite[year] = 0;
         element.properties.pblack[year] = 0;
+        element.properties.pcol[year] = 0;
       } else {
         element.properties.pwhite[year] = 100 * element.properties.white[year] / element.properties.pop[year];
         element.properties.pblack[year] = 100 * element.properties.black[year] / element.properties.pop[year];
+        element.properties.pcol[year] = 100 * element.properties.col[year] / element.properties.pop[year];
+
+        //check if > 100%
+        element.properties.pwhite[year] = element.properties.pwhite[year] > 100 ? 0 : element.properties.pwhite[year];
+        element.properties.pblack[year] = element.properties.pblack[year] > 100 ? 0 : element.properties.pblack[year];
+        element.properties.pcol[year] = element.properties.pcol[year] > 100 ? 0 : element.properties.pcol[year];
       }
     }
   });
@@ -148,7 +158,6 @@ var createMap = function(parent, width, height) {
 
 //TODO: FIGURE OUT DEFAULT VALUES
 var recolorMap = function() {
-  //TODO: if 0 --> noData --> color grey
   console.log("recolorMap being called");
   var colorScale = d3.scale.quantize();
 
@@ -168,7 +177,7 @@ var recolorMap = function() {
   colorScale.domain([d3.min(features, findMin), d3.max(features, findMax)]);
 
   function fillColor(d) {
-    if (+d.properties[metric][year] >= 1) {
+    if (+d.properties[metric][year] > 0) {
       return colorScale(+d.properties[metric][year]);
     }
     return "#d3d3d3";

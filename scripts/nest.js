@@ -43,7 +43,7 @@ function nest(array) {
       "2000": "HINC00",
       "2010": "hinc0a"
     },
-    "pcol": {
+    "col": {
       "1970" : "COL70",
       "1980": "col80",
       "1990": "COL90",
@@ -61,7 +61,7 @@ function nest(array) {
         NTAName : oldProperties.NTAName,
         id : oldProperties.tractID
       };
-      ["black", "mhinc", "mhv", "mrent", "pcol", "pop", "white"].forEach(function(word){
+      ["black", "mhinc", "mhv", "mrent", "col", "pop", "white"].forEach(function(word){
         var x = {};
         ["1970", "1980", "1990", "2000", "2010"].forEach(function(year){
           x[year] = 0;
@@ -76,7 +76,7 @@ function nest(array) {
       NTAName : oldProperties.NTAName,
       id : oldProperties.tractID
     };
-    ["black", "mhinc", "mhv", "mrent", "pcol", "pop", "white"].forEach(function(word){
+    ["black", "mhinc", "mhv", "mrent", "col", "pop", "white"].forEach(function(word){
       var x = {};
       ["1970", "1980", "1990", "2000", "2010"].forEach(function(year){
         var oldWord = oldWords[word][year];
