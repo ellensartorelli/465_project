@@ -1,40 +1,41 @@
-	#map{
-		float:left;
-	}
+#map{
+	float:left;
+}
 
-	#answers{
-		clear: both;
-	}
+#answers{
+	clear: both;
+}
 
-	.hidden{
-		display:none;
-	}
-	.background {
-				  fill: none;
-				  pointer-events: all;
-				}
-	.tract {
-	  /*fill: #ccc;*/
-	  cursor: pointer;
-	}
-	.tract:hover{
-		stroke: yellow;
-		stroke-opacity: 0.8;
-		fill: none;
-	}
-	.inactive:hover{
-		stroke: none;
-	}
-	.panning_mode{
-		cursor: pointer;
-	}
-	.tract.selected {
-	  stroke: yellow;
-		stroke-width: 12px:
-	}
-	.mesh {
-	  fill: none;
-	  stroke: #fff;
-	  stroke-linecap: round;
-	  stroke-linejoin: round;
-	}
+.hidden{
+	display:none;
+}
+.background {
+			  fill: none;
+			  pointer-events: all;
+			}
+.tract {
+  /*fill: #ccc;*/
+  cursor: pointer;
+}
+.tract:hover{
+	stroke: yellow;
+	stroke-opacity: 0.8;
+	fill: none;
+
+}
+.inactive:hover{
+	stroke: none;
+}
+.panning_mode{
+	cursor: pointer;
+}
+.tract.selected {
+  stroke: yellow;
+ /* stroke-width: 12px;*/
+}
+.mesh {
+  fill: none;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
