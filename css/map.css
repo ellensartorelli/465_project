@@ -15,7 +15,7 @@
 				}
 	.tract {
 	  /*fill: #ccc;*/
-	  /*cursor: pointer;*/
+	  cursor: pointer;
 	}
 	.tract:hover{
 		stroke: yellow;
