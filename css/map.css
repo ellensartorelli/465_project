@@ -17,12 +17,20 @@
 	  /*fill: #ccc;*/
 	  /*cursor: pointer;*/
 	}
+	.tract:hover{
+		stroke: yellow;
+		stroke-opacity: 0.8;
+		fill: none;
+	}
+	.inactive:hover{
+		stroke: none;
+	}
 	.panning_mode{
 		cursor: pointer;
 	}
 	.tract.selected {
-	  stroke: #ff0000;
-		stroke-width: 10px:
+	  stroke: yellow;
+		stroke-width: 12px:
 	}
 	.mesh {
 	  fill: none;
