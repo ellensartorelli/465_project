@@ -8,14 +8,14 @@ function nest(array) {
       "2000": "NHBLK00",
       "2010": "nhblk10"
     },
-    "mhv": {
+    "mhv_unadjusted": {
       "1970" : "MHMVAL70",
       "1980": "MHMVAL80",
       "1990": "MHMVAL90",
       "2000": "MHMVAL00",
       "2010": "mhmval0a"
     },
-    "mrent": {
+    "mrent_unadjusted": {
       "1970" : "MRENT70",
       "1980": "MRENT80",
       "1990": "MRENT90",
@@ -36,7 +36,7 @@ function nest(array) {
       "2000": "NHWHT00",
       "2010": "nhwht10"
     },
-    "mhinc": {
+    "mhinc_unadjusted": {
       "1970" : "HINC70",
       "1980": "hinc80",
       "1990": "HINC90",
@@ -52,6 +52,8 @@ function nest(array) {
     }
   };
 
+  var propertiesArray = ["black", "mhinc_unadjusted", "mhv_unadjusted", "mrent_unadjusted", "col", "pop", "white"];
+
   return array.map(function(element) {
     var oldProperties = element.properties;
     //if tract is park
@@ -61,7 +63,7 @@ function nest(array) {
         NTAName : oldProperties.NTAName,
         id : oldProperties.tractID
       };
-      ["black", "mhinc", "mhv", "mrent", "col", "pop", "white"].forEach(function(word){
+      propertiesArray.forEach(function(word){
         var x = {};
         ["1970", "1980", "1990", "2000", "2010"].forEach(function(year){
           x[year] = 0;
@@ -76,7 +78,7 @@ function nest(array) {
       NTAName : oldProperties.NTAName,
       id : oldProperties.tractID
     };
-    ["black", "mhinc", "mhv", "mrent", "col", "pop", "white"].forEach(function(word){
+    propertiesArray.forEach(function(word){
       var x = {};
       ["1970", "1980", "1990", "2000", "2010"].forEach(function(year){
         var oldWord = oldWords[word][year];
