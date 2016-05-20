@@ -11,10 +11,6 @@ var createMap = function(parent, width, height) {
     .attr("id", "key");
   key.append("g");
 
-  var legend = d3.select(parent)
-    .append("ul")
-    .attr("id", "legend");
-
   // put in a background to get mouse clicks
   svg.append("rect")
   .attr("class", "background")
@@ -117,6 +113,9 @@ var createMap = function(parent, width, height) {
   Catch mouse clicks
   **/
   function clicked(tract) {
+    if (d3.event.defaultPrevented) { //panning no disables on-click behavior
+      return;
+    }
     var tractId = "#id" + tract.properties.id;
     var path = canvas.select(tractId);
     if (!path.classed("inactive")) {
