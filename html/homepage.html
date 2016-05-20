@@ -97,8 +97,19 @@
 
       createToolbox("#map");
       var lineGraphs = {"mhinc": null, "pcol": null, "mhv": null, "pblack": null, "pwhite": null, "mrent": null};
+      var i = 1;
+      var curDiv = -1;
       for (prop in lineGraphs) {
-        lineGraphs[prop] = createLineGraph("#linegraph", prop, 200, 200);
+        i++;
+        if (i == 2) {
+          i = 0;
+          curDiv++;
+          d3.select("#linegraph")
+            .append("div")
+            .attr("id", "row"+curDiv)
+            .attr("display", "table-row");
+        }
+        lineGraphs[prop] = createLineGraph("#row"+curDiv, prop, 200, 200);
       }
 
       //redrawVis();
