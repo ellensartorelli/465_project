@@ -10,8 +10,8 @@ function identifyGentrified(array) {
       var pcolIncrease = element.properties.pcol[year] - element.properties.pcol[previousYear];
       element.properties.pcol_percent_increase[year] = 100 * pcolIncrease / element.properties.pcol[previousYear];
 
-      var mhvIncrease = element.properties.mhv[year] - element.properties.mhv[previousYear];
-      element.properties.mhv_percent_increase[year] = 100 * mhvIncrease / element.properties.mhv[previousYear];
+      var mhvIncrease = element.properties.mhv_unadjusted[year] - element.properties.mhv_adjusted_next[previousYear];
+      element.properties.mhv_percent_increase[year] = 100 * mhvIncrease / element.properties.mhv_unadjusted[previousYear];
     });
     return element;
   });
@@ -21,22 +21,22 @@ function identifyGentrified(array) {
   var mhinc = {};
   ["1970", "1980", "1990", "2000", "2010"].forEach(function(year) {
     mhinc[year] = array.map(function(element){
-      return element.properties.mhinc[year];
+      return element.properties.mhinc_unadjusted[year];
     });
   });
   for (year in mhinc) {
-    mhinc[year] = mhinc[year].sort(function(a,b){return +a - +b;})
+    mhinc[year] = mhinc[year].sort(comparator);
   }
 
   //median home value
   var mhv = {};
   ["1970", "1980", "1990", "2000", "2010"].forEach(function(year) {
     mhv[year] = array.map(function(element){
-      return element.properties.mhv[year];
+      return element.properties.mhv_unadjusted[year];
     });
   });
   for (year in mhv) {
-    mhv[year] = mhv[year].sort(function(a,b){return +a - +b;})
+    mhv[year] = mhv[year].sort(comparator);
   }
 
   //percent increase of median homevalue
@@ -47,7 +47,7 @@ function identifyGentrified(array) {
     });
   });
   for (year in mhv_increase) {
-    mhv_increase[year] = mhv_increase[year].sort(function(a,b){return +a - +b;})
+    mhv_increase[year] = mhv_increase[year].sort(comparator);
   }
 
   //percent increase in percent with college degree
@@ -58,12 +58,17 @@ function identifyGentrified(array) {
     });
   });
   for (year in pcol_increase) {
-    pcol_increase[year] = pcol_increase[year].sort(function(a,b){return +a - +b;})
+    pcol_increase[year] = pcol_increase[year].sort(comparator);
   }
 
   var per40 = Math.floor(array.length * 0.4);
   var topThird = Math.floor(array.length * 0.6666);
 
+  function comparator(a,b){
+    if (isNaN(a)) return -1;
+    if (isNaN(b)) return 1;
+    return +a - b;
+  }
 
   //return the array with new properties
   return array.map(function(element) {
@@ -77,9 +82,9 @@ function identifyGentrified(array) {
         //1. population >= 500
         (element.properties.pop[previousYear]) >= 500 && (element.properties.pop[year] >= 500)
         ///2. Median household income is in the bottom 40th percentile
-        && (element.properties.mhinc[previousYear] < mhinc[previousYear][per40])
+        && (element.properties.mhinc_unadjusted[previousYear] < mhinc[previousYear][per40])
         //3. Median home value is in the bottom 40th percentile
-        && (element.properties.mhv[previousYear] < mhv[previousYear][per40])
+        && (element.properties.mhv_unadjusted[previousYear] < mhv[previousYear][per40])
       ) status = "eligible";
 
       //check post-conditions
