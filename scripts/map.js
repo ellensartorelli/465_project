@@ -102,16 +102,8 @@ var createMap = function(parent, width, height) {
   .enter()
   .append("path")
   .attr("d",path)
-  .attr("class", "tract panning_mode")
+  .attr("class", "tract")
   .attr("id", function(d) {return "id" + d.properties.id;})
-  // .attr("class", function(d) {
-  //   console.log(tools_bools);
-  //   if(tools_bools["Selection"]==true){
-  //     return "tract selection_mode";
-  //   }else{
-  //     return "tract panning_mode";
-  //   };
-  // })
   .on("click",clicked);
 
   recolorMap();
@@ -125,7 +117,7 @@ var createMap = function(parent, width, height) {
     var tractId = "#id" + tract.properties.id;
     var path = canvas.select(tractId);
     if (!path.classed("inactive")) {
-      if(tools_bools["Selection"]==true){
+      // if(tools_bools["Selection"]==true){
 
         var index = selectedTracts.indexOf(tract, function(element) {
           return element.properties.id == tract.properties.id;
@@ -140,7 +132,7 @@ var createMap = function(parent, width, height) {
           path.classed("selected", false);
         }
         redrawVis();
-      }
+      //}
     }
   }
 
