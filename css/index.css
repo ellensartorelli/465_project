@@ -19,10 +19,14 @@ div.container{
 
 }
 #top_L{
-  float: left; margin-top: inherit; width:50%;
+  float: left;
+  margin-top: inherit;
+  width:65%;
 }
 #top_R{
-  float: right; margin-top: 0; width:50%;
+  float: right;
+  margin-top: 0;
+  width:35%;
 }
 #bottom_L{
   float: left; margin-top: inherit; width:100%;
