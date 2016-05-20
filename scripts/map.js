@@ -11,10 +11,6 @@ var createMap = function(parent, width, height) {
     .attr("id", "key");
   key.append("g");
 
-  var legend = d3.select(parent)
-    .append("ul")
-    .attr("id", "legend");
-
   // put in a background to get mouse clicks
   svg.append("rect")
   .attr("class", "background")

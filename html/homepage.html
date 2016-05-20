@@ -91,8 +91,8 @@
       map_height = 670;
 
       createMap("#map", map_width, map_height);
-      createSlider("#map", (Math.floor(map_width/3)));
-      createMetric("#map");
+      createSlider("#map", (Math.floor(map_width/2))); //
+      //createMetric("#map");
       createToolbox("#map");
       var lineGraphs = {"mhinc": null, "pcol": null, "mhv": null, "pblack": null, "pwhite": null, "mrent": null};
       for (prop in lineGraphs) {
