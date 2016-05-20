@@ -1,19 +1,12 @@
-#key{
-	float:right;
+.key path {
+  display: none;
 }
-#key li{
-	list-style-type:none;
-	font-family: sans-serif;
-	line-height: 13px;
+
+.key line {
+  stroke: #000;
+  shape-rendering: crispEdges;
 }
-#key span{
-	font-family: sans-serif;
-	font-size: 12px;
-}
-#key ul{
-/*	not sure if this is doing anything?*/
-  padding:0;
-  margin-left:0px;
-  padding-right: 20px;
-  margin-top: 0px;
+
+.key {
+  font-size: 14px;
 }

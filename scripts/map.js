@@ -192,7 +192,7 @@ var recolorMap = function() {
     .transition(1000)
     .style("fill", fillColor);
 
-  drawKey("#map", colorScale); //DO NOT USE VARIABLE parent HERE. SCOPING ISSUES
+  drawKey("#map", colorScale, nColors); //DO NOT USE VARIABLE parent HERE. SCOPING ISSUES
 }
 
 function findMin(d) {
