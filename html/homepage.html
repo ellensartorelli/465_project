@@ -41,6 +41,7 @@
 
       <div id="top_R">
             <div id="linegraph"></div>
+            <div id="legend"></div>
       </div>
 
       <div id="bottom_L">
@@ -93,7 +94,7 @@
       createMap("#map", map_width, map_height);
 
       createSlider("#map", (Math.floor(map_width/2))); //
-      //createMetric("#map");
+      createMetric("#top_R");
 
       createToolbox("#map");
       var lineGraphs = {"mhinc": null, "pcol": null, "mhv": null, "pblack": null, "pwhite": null, "mrent": null};
