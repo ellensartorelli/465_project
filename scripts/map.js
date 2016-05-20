@@ -90,6 +90,16 @@ var createMap = function(parent, width, height) {
 
   mapData.objects["nyct2010_3"].geometries = identifyGentrified(mapData.objects["nyct2010_3"].geometries);
 
+  features.forEach(function(element) {
+    if (element.properties.status[gentrificationYear] == "gentrified") {
+      gentrifiedTracts.push(element);
+    } else if (element.properties.status[gentrificationYear] == "eligible") {
+      eligibleTracts.push(element);
+    } else if (element.properties.status[gentrificationYear] == "ineligible") {
+      ineligibleTracts.push(element);
+    }
+  });
+
   var paths = canvas.selectAll("path")
   .data(features)
   .enter()

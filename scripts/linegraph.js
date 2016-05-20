@@ -1,4 +1,4 @@
-var createLineGraph = function(parent, width, height){
+var createLineGraph = function(parent, displayedMetric, width, height){
   var dataset;
 
   var margins = {top:20, bottom:60, left: 60, right:50};
@@ -6,12 +6,12 @@ var createLineGraph = function(parent, width, height){
   var chartHeight = height - margins.top - margins.bottom;
 
   var xScale = d3.scale.linear().range([0, chartWidth]);
-  var yScale1 = d3.scale.linear().range([chartHeight, 0]);
-  var yScale2 = d3.scale.linear().range([chartHeight, 0]);
+  var yScale = d3.scale.linear().range([chartHeight, 0]);
 
-  var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(d3.format("d"));
-  var yAxis1 = d3.svg.axis().scale(yScale1).orient("left");
-  var yAxis2 = d3.svg.axis().scale(yScale2).orient("right");
+  var xAxis = d3.svg.axis().scale(xScale).orient("bottom")
+    .tickFormat(function(d){return "'" + d.toString().substring(2, 4)})
+    .tickValues([1970, 1980, 1990, 2000, 2010]);
+  var yAxis = d3.svg.axis().scale(yScale).orient("left").ticks(7);
 
   var svg = d3.select(parent)
     .append("svg")
@@ -24,35 +24,35 @@ var createLineGraph = function(parent, width, height){
     .attr({"class": "axis",
             "transform": "translate(0," + chartHeight +")"});
 
-  var yAxis1G = chart.append("g")
+  var yAxisG = chart.append("g")
     .attr({"class": "axis"});
 
-  var yAxis2G = chart.append("g")
-    .attr({"class": "axis",
-        "transform": "translate(" + chartWidth + ",0)"});
+  var shittyTitle = chart.append("text").text(displayedMetric);
 
 
   var vis = function(){
     //situate data correctly
-    var attributes = ["black", "white", "mhinc", "mhv", "mrent", "pcol", "pop"];
     var flattenedData = [];
-    dataset.forEach(function(element) {
-      attributes.forEach(function(attribute) {
-        for (year in element[attribute]) {
+    dataset.forEach(function(set, setIndex) {
+      set.forEach(function(element) {
+        for (year in element[displayedMetric]) {
           var point = flattenedData.find(function(e) {
-            return e.attribute == attribute && e.year == year;})
+            return e.group == setIndex && e.year == year;})
           if (point) {
-            //averaging:
-            point.value = (point.value * point.count/(point.count + 1)) +
-                          element[attribute][year] / (point.count + 1);
+            if (point.value != 0) {
+              //averaging:
+              point.value = (point.value * point.count/(point.count + 1)) +
+                            element[displayedMetric][year] / (point.count + 1);
 
-            //aggregrating:
-            // point.value += element[attribute][year];
+              //aggregrating:
+              // point.value += element[attribute][year];
 
-            point.count++;
+              point.count++;
+            }
           } else {
-            var value = element[attribute][year];
-            flattenedData.push({"attribute": attribute,
+            var value = element[displayedMetric][year];
+            flattenedData.push({"attribute": displayedMetric,
+                                "group": setIndex,
                                 "year": year,
                                 "value": value,
                                 "count": 1});
@@ -60,52 +60,54 @@ var createLineGraph = function(parent, width, height){
         }
       })
     })
-    flattenedData = flattenedData.map( function(element, index, array) {
-      if (element.attribute == "pop") return null;
-      if (element.attribute == "black" || element.attribute == "white") {
-        var pop = array.find(function (d) {return d.year == element.year && d.attribute == "pop"}).value;
-        element.value = element.value/pop;
-      }
-      return element;
-    }).filter(function(element) {
-      return element !== null;
-    });
+
+    // flattenedData = flattenedData.map( function(element, index, array) {
+    //   if (element.attribute == "pop") return null;
+    //   if (element.attribute == "black" || element.attribute == "white") {
+    //     var pop = array.find(function (d) {return d.year == element.year && d.attribute == "pop"}).value;
+    //     element.value = element.value/pop;
+    //   }
+    //   return element;
+    // }).filter(function(element) {
+    //   return element !== null;
+    // });
 
     var nestedData = d3.nest()
-          .key(function(d){return d.attribute;})
+          .key(function(d){return d.group;})
           .entries(flattenedData);
 
     var line = d3.svg.line()
           .x(function(d){return xScale(+d.year); })
-          .y(function(d){
-            if (d.attribute == "white" || d.attribute == "black" || d.attribute == "pcol") {
-              return yScale1(+d.value*100);
-            } else {
-              return yScale2(+d.value);
-            }
-          });
+          .y(function(d){return yScale(+d.value); });
 
     xScale.domain(d3.extent([1970,2010]));
-    yScale1.domain([0, 100]);
-    yScale2.domain([0, d3.max(flattenedData, function(point) {
+    yScale.domain(d3.extent(flattenedData, function(point) {
       return point.value;
-    })]);
+    }));
 
-    var groups = chart.selectAll(".attribute")
+    var groups = chart.selectAll(".group")
     .data(nestedData, function(d){return d.key;});
 
     groups.exit().remove();
     groups.enter().append("g")
-      .attr("class","attribute")
+      .attr("class","group")
       .append("path");
 
     groups.select("path")
         .transition(1000)
         .attr("class", "line")
         .attr("d", function(d){return line(d.values)})
-        .style("fill","None");
+        .style("fill","None")
+        .style("stroke", function(d){return color(d.key)})
 
-    //     
+    function color(key) {
+      if( key == "0") return "black";
+      if (key == "1") return "red";
+      if (key == "2") return "blue";
+      if (key == "3") return "green";
+    }
+
+    //
   	// //draw circles
   	// groups.selectAll("circle")
   	// 			.data(function(d){return d.values;})
@@ -118,8 +120,7 @@ var createLineGraph = function(parent, width, height){
 
 
     xAxisG.call(xAxis);
-    yAxis1G.call(yAxis1);
-    yAxis2G.call(yAxis2);
+    yAxisG.call(yAxis);
   };
 
   vis.loadData = function(data){

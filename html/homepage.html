@@ -61,7 +61,11 @@
     </div>
 
     <script>
+      var gentrificationYear = "2010";
       var selectedTracts = [];
+      var gentrifiedTracts = [];
+      var eligibleTracts = [];
+      var ineligibleTracts = [];
       var features;
       //var metricDict = {"mhinc": "Median Household Income", "pcol": "Percent w. College Degree", "mhv": "Median Home Value", "black": "Percent Black", "white":"Percent White", "mrent": "Median Rent Price"};
       var metricList = [{abbr: "mhinc",name: "Median Household Income"}, {abbr: "pcol",name:"Percent w. College Degree"}, {abbr: "mhv",name:"Median Home Value"}, {abbr: "pblack",name:"Percent Black"}, {abbr: "pwhite",name:"Percent White"}, {abbr: "mrent",name:"Median Rent Price"}];
@@ -72,21 +76,27 @@
 
       function redrawVis() {
         console.log("redrawing");
-        lineGraph.loadData( !features ? [] :
-                            selectedTracts.length === 0 ?
-                            features.map(function(e){return e.properties;}) :
-                            selectedTracts.map(function(e){return e.properties;}) );
-        lineGraph();
-        //reload data and redrwaw line and bar graphs
+        for (prop in lineGraphs) {
+          lineGraphs[prop].loadData( [gentrifiedTracts, eligibleTracts, ineligibleTracts, selectedTracts]
+            .map(function(d){ return d.map(function(e) {
+              return e.properties})
+            })
+          );
+          lineGraphs[prop]();
+        }
+        //reload data and redrwaw line graphs
       }
 
       createMap("#map", 500, 500);
       createSlider("#map", 500);
       createMetric("#map");
       createToolbox("#map");
-      var lineGraph = createLineGraph("#linegraph", 500, 500);
+      var lineGraphs = {"mhinc": null, "pcol": null, "mhv": null, "pblack": null, "pwhite": null, "mrent": null};
+      for (prop in lineGraphs) {
+        lineGraphs[prop] = createLineGraph("#linegraph", prop, 200, 200);
+      }
 
-      redrawVis();
+      //redrawVis();
 
     </script>
   </body>

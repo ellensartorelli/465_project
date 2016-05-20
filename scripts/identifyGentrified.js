@@ -7,11 +7,19 @@ function identifyGentrified(array) {
     ["1970", "1980", "1990", "2000", "2010"].forEach(function(year, index, array) {
       if (year == "1970") return;
       var previousYear = array[index-1];
-      var pcolIncrease = element.properties.pcol[year] - element.properties.pcol[previousYear];
-      element.properties.pcol_percent_increase[year] = 100 * pcolIncrease / element.properties.pcol[previousYear];
+      if (element.properties.pcol[previousYear] == 0) {
+        element.properties.pcol_percent_increase[year] = 0;
+      } else {
+        var pcolIncrease = element.properties.pcol[year] - element.properties.pcol[previousYear];
+        element.properties.pcol_percent_increase[year] = 100 * pcolIncrease / element.properties.pcol[previousYear];
+      }
 
-      var mhvIncrease = element.properties.mhv_unadjusted[year] - element.properties.mhv_adjusted_next[previousYear];
-      element.properties.mhv_percent_increase[year] = 100 * mhvIncrease / element.properties.mhv_unadjusted[previousYear];
+      if (element.properties.mhv_unadjusted[previousYear] == 0) {
+        element.properties.mhv_percent_increase[year] = 0;
+      } else {
+        var mhvIncrease = element.properties.mhv_unadjusted[year] - element.properties.mhv_adjusted_next[previousYear];
+        element.properties.mhv_percent_increase[year] = 100 * mhvIncrease / element.properties.mhv_unadjusted[previousYear];
+      }
     });
     return element;
   });
