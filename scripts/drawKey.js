@@ -89,23 +89,25 @@ var xAxis = d3.svg.axis()
     .tickValues(threshold.domain())
     .tickFormat(function(d) { return d <= 100 ? formatPercent(d)+"%" : formatNumber(d); });
 
-var svg = d3.select(parent).append("svg")
+var svg = d3.select(parent).select("#key")
     .attr("width", width)
     .attr("height", height);
 
-var g = svg.append("g")
+var g = svg.select("g")
     .attr("class", "key")
     .attr("transform", "translate(" + (width - 240) / 2 + "," + height / 2 + ")");
 
-g.selectAll("rect")
+var rects = g.selectAll("rect")
     .data(threshold.range().map(function(color) {
       var d = threshold.invertExtent(color);
       if (d[0] == null) d[0] = x.domain()[0];
       if (d[1] == null) d[1] = x.domain()[1];
       return d;
     }))
-  .enter().append("rect")
-    .attr("height", 8)
+  rects.enter().append("rect");
+  rects.exit().remove();
+
+  rects.attr("height", 8)
     .attr("x", function(d) { return x(d[0]); })
     .attr("width", function(d) { return x(d[1]) - x(d[0]); })
     .style("fill", function(d) { return threshold(d[0]); });
