@@ -67,8 +67,7 @@ var makeScaleDomain = function(){
   return scaleDomain;
 };
 
-  var width = 860,
-    height = 100,
+  var height = 100,
     formatPercent = d3.format("0.1f");
     formatNumber = d3.format(".0f");
 
@@ -93,10 +92,8 @@ var svg = d3.select(parent).select("#key")
     .attr("height", height);
 
 var g = svg.select("g")
-    .attr("class", "key")
-    .attr("transform", "translate(" + 385 + "," + 10 + ")");
-    // .attr("transform", "translate(" + (width - 240) / 2 + "," + height / 2 + ")");
-
+    .attr("class", "key");
+    
 var rects = g.selectAll("rect")
     .data(threshold.range().map(function(color) {
       var d = threshold.invertExtent(color);

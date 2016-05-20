@@ -6,7 +6,12 @@ var createMap = function(parent, width, height) {
   .append("svg")
   .attr({"width":width, "height":height});
 
+  var sliderDiv = d3.select(parent)
+    .append("div")
+    .attr("id", "sliderDiv");
+
   var key = d3.select(parent)
+    .append("div")
     .append("svg")
     .attr("id", "key");
   key.append("g");
@@ -207,7 +212,7 @@ var recolorMap = function() {
     .transition(1000)
     .style("fill", fillColor);
 
-  drawKey("#map", colorScale, nColors); //DO NOT USE VARIABLE parent HERE. SCOPING ISSUES
+  drawKey("#map", colorScale, nColors, map_width/2); //DO NOT USE VARIABLE parent HERE. SCOPING ISSUES
 }
 
 function findMin(d) {

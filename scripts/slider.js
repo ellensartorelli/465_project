@@ -5,7 +5,8 @@ function createSlider(parent, width){
 
 	//create slider
 	var slider_svg = d3.select(parent)
-		.append("div")
+		.select("#sliderDiv")
+		.style("float", "left")
 		.append("svg")
 		.attr({"width":width, "height":100})
 		.attr("id", "slider");
