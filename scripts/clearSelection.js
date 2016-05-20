@@ -1,6 +1,6 @@
 function clearSelection(){
-		selectedTracts = [];
-		redrawVis();
-		var selectedTracts = d3.selectAll(".selected");
-		selectedTracts.classed("selected", false);
+	var tracts = d3.selectAll(".tract.selected")
+	tracts.classed("selected", false);
+	selectedTracts = [];
+	redrawVis();
 };
