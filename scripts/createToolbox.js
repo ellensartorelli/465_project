@@ -5,38 +5,38 @@ function createToolbox(parent){
 			.attr("id", "toolbox");
 
 
-		var toolbox_listItem = toolbox.selectAll("ul")
-			.data(["Selection", "Brushing", "Panning"])
-			.enter()
-		 	.append("li")
-		 	.attr("id", "toolbox_item");
+		// var toolbox_listItem = toolbox.selectAll("ul")
+		// 	.data(["Selection", "Brushing", "Panning"])
+		// 	.enter()
+		//  	.append("li")
+		//  	.attr("id", "toolbox_item");
 
 
-		var photo_span = d3.selectAll("#toolbox_item").append("span")
-			.attr("class", function(d){
-				return d;
-			})
-			.style({
-				"padding-left":"23px",
-				"width":"15px",
-				"height":"23px"
-			});
+		// var photo_span = d3.selectAll("#toolbox_item").append("span")
+		// 	.attr("class", function(d){
+		// 		return d;
+		// 	})
+		// 	.style({
+		// 		"padding-left":"23px",
+		// 		"width":"15px",
+		// 		"height":"23px"
+		// 	});
 
 
-		toolbox_listItem.append("input")
-			.attr({
-				"type": "radio",
-				"id": function(d){
-					return d},
-				"value": function(d){
-					return d;},
-				"name": "tool",
-				"onclick": "setTool(id)"
-			});
+		// toolbox_listItem.append("input")
+		// 	.attr({
+		// 		"type": "radio",
+		// 		"id": function(d){
+		// 			return d},
+		// 		"value": function(d){
+		// 			return d;},
+		// 		"name": "tool",
+		// 		"onclick": "setTool(id)"
+		// 	});
 
-		toolbox_listItem.append("span")
-			.attr("id", "tool_text")
-			.text(function(d){return d;});
+		// toolbox_listItem.append("span")
+		// 	.attr("id", "tool_text")
+		// 	.text(function(d){return d;});
 
 		var lastItem = toolbox.selectAll("ul")
 			.data(["Clear selections"])
@@ -48,6 +48,12 @@ function createToolbox(parent){
 				"value": function(d){
 					return d;
 				},
-				// "onclick": "clearSelection()"
+				"onclick": "clearSelection()"
 			});
+
+
+	function clearSelection(){
+		selectedTracts = [];
+		redrawVis();
+	};
 };
