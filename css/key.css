@@ -8,8 +8,12 @@
 }
 
 .key {
-  float: right;
+  	float: right;
 	margin-right: 0;
   	font-family: sans-serif;
   	font-size: 11px;
+}
+
+#key {
+	margin-top: 25px;
 }

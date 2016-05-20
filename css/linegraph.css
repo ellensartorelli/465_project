@@ -63,3 +63,9 @@ shape-rendering: crisp-edges;
 	background-color: #ecf9ee;
 	cursor: pointer;
 }
+.chart_titles{
+	font-size: 13px;
+	padding-bottom: 50px;
+	line-height: 50px;
+
+}

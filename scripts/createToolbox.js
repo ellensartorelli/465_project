@@ -44,6 +44,7 @@ function createToolbox(parent){
 			.append("li")
 			.append("input")
 			.attr({
+				"id": "clear_button",
 				"type": "button",
 				"value": function(d){
 					return d;
