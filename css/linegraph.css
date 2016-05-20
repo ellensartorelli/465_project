@@ -18,3 +18,48 @@ shape-rendering: crisp-edges;
   stroke-width: 2;
   fill: none;
 }
+
+#mhinc{
+	background-color: white;
+}
+#mhinc:hover{
+	background-color: #eaf5f9;
+	cursor: pointer;
+}
+#pblack{
+	background-color: white;
+
+}
+#pblack:hover{
+	background-color: #f9f5ec;
+	cursor: pointer;
+	
+}
+#pwhite{
+	background-color: white;
+}
+#pwhite:hover{
+	background-color: #f9ecec;
+	cursor: pointer;
+}
+#mhv{
+	background-color: white;
+}
+#mhv:hover{
+	background-color: #f6ecf9;
+	cursor: pointer;
+}
+#mrent{
+	background-color: white;
+}
+#mrent:hover{
+	background-color: #f9ecf6;
+	cursor: pointer;
+}
+#pcol{
+	background-color: white;
+}
+#pcol:hover{
+	background-color: #ecf9ee;
+	cursor: pointer;
+}

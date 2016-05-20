@@ -22,7 +22,7 @@ div.container{
   float: left; margin-top: inherit; width:50%;
 }
 #top_R{
-  float: right; margin-top: inherit; width:50%;
+  float: right; margin-top: 0; width:50%;
 }
 #bottom_L{
   float: left; margin-top: inherit; width:100%;
@@ -52,4 +52,7 @@ a:link {
 }
 a:visited {
     color: #528B8B;
+}
+#linegraph{
+  width: 100%;
 }

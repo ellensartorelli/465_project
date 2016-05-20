@@ -1,7 +1,7 @@
 var createLineGraph = function(parent, displayedMetric, width, height){
   var dataset;
 
-  var margins = {top:20, bottom:60, left: 60, right:50};
+  var margins = {top:30, bottom:50, left: 60, right:50};
   var chartWidth = width - margins.left - margins.right;
   var chartHeight = height - margins.top - margins.bottom;
 
@@ -15,7 +15,24 @@ var createLineGraph = function(parent, displayedMetric, width, height){
 
   var svg = d3.select(parent)
     .append("svg")
-    .attr({width:width, height:height});
+    .attr("id", displayedMetric)
+    .attr({width:width, height:height})
+    .on("click", function(){
+          console.log(this.value+" is checked");
+          //SEND THIS VALUE TO SET THE METRIC TO BE DISPLAYED ON THE MAP
+          //SEND THIS VALUE TO HIGHLIGHT LINE IN LINE GRAPH
+          //SENT THIS VALUE TO BE HIGHLIGHTED BAR IN BAR CHART
+
+          // var update = updateKey(this.value);
+          // if(update == true){//clear legend
+          //  d3.selectAll("#key").remove();
+          //  makeLegend("#map", colorScale);
+          // };
+          //d3.selectAll("#key").remove();
+          metric = this.id;
+          recolorMap();
+      });
+
 
   var chart = svg.append("g")
     .attr("transform", "translate("+margins.left + "," + margins.top + ")");
