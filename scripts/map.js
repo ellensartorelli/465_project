@@ -7,8 +7,9 @@ var createMap = function(parent, width, height) {
   .attr({"width":width, "height":height});
 
   var key = d3.select(parent)
-    .append("ul")
+    .append("svg")
     .attr("id", "key");
+  key.append("g");
 
   var legend = d3.select(parent)
     .append("ul")
