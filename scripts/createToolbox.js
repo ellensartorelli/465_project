@@ -51,9 +51,4 @@ function createToolbox(parent){
 				"onclick": "clearSelection()"
 			});
 
-
-	function clearSelection(){
-		selectedTracts = [];
-		redrawVis();
-	};
 };

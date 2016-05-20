@@ -1,4 +1,4 @@
-var drawKey = function(parent, colorScale, nColors){
+var drawKey = function(parent, colorScale, nColors, width){
 
   //%%%%%%%%%%%%%%%%%% -- OLD KEY -- %%%%%%%%%%%%%%%%%%%%%%%
 
@@ -79,12 +79,12 @@ var threshold = d3.scale.threshold()
 // A position encoding for the key only.
 var x = d3.scale.linear()
     .domain(makeScaleDomain())
-    .range([0, 400]);
+    .range([0, 300]);
 
 var xAxis = d3.svg.axis()
     .scale(x)
     .orient("bottom")
-    .tickSize(13)
+    .tickSize(19)
     .tickValues(threshold.domain())
     .tickFormat(function(d) { return d <= 100 ? formatPercent(d)+"%" : formatNumber(d); });
 
@@ -94,7 +94,8 @@ var svg = d3.select(parent).select("#key")
 
 var g = svg.select("g")
     .attr("class", "key")
-    .attr("transform", "translate(" + (width - 240) / 2 + "," + height / 2 + ")");
+    .attr("transform", "translate(" + 385 + "," + 10 + ")");
+    // .attr("transform", "translate(" + (width - 240) / 2 + "," + height / 2 + ")");
 
 var rects = g.selectAll("rect")
     .data(threshold.range().map(function(color) {
@@ -106,7 +107,7 @@ var rects = g.selectAll("rect")
   rects.enter().append("rect");
   rects.exit().remove();
 
-  rects.attr("height", 8)
+  rects.attr("height", 12)
     .attr("x", function(d) { return x(d[0]); })
     .attr("width", function(d) { return x(d[1]) - x(d[0]); })
     .style("fill", function(d) { return threshold(d[0]); });

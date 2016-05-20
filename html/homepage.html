@@ -77,12 +77,15 @@
                             selectedTracts.length === 0 ?
                             features.map(function(e){return e.properties;}) :
                             selectedTracts.map(function(e){return e.properties;}) );
-        lineGraph();
+        // lineGraph();
         //reload data and redrwaw line and bar graphs
       }
 
-      createMap("#map", 500, 500);
-      createSlider("#map", 500);
+      map_width = 700;
+      map_height = 670;
+
+      createMap("#map", map_width, map_height);
+      createSlider("#map", (Math.floor(map_width/3)));
       createMetric("#map");
       createToolbox("#map");
       var lineGraph = createLineGraph("#linegraph", 500, 500);

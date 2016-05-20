@@ -52,7 +52,7 @@ var createMap = function(parent, width, height) {
 
   var projection = d3.geo.mercator()
           .center([-73.94, 40.70])
-          .scale(50500)
+          .scale(60000)
           .translate([(width) / 2, (height)/2]);
 
   // create the path tool
