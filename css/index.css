@@ -11,9 +11,9 @@ body{
 }
 #page_title p{
   text-align: center;
-  font-size: 2em;
+  font-size: 3em;
   margin: 0 auto;
-  margin-top: 25px;
+  padding: 50px;
 }
 div.container{
 

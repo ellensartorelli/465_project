@@ -44,7 +44,12 @@ var createLineGraph = function(parent, displayedMetric, width, height){
   var yAxisG = chart.append("g")
     .attr({"class": "axis"});
 
-  var shittyTitle = chart.append("text").text(displayedMetric);
+  var titles = chart.append("text")
+                    .text(metricDict[displayedMetric])
+                    .attr("class", "chart_titles")
+                    .attr("x", chartWidth/2)
+                    .attr("text-anchor", "middle")
+                    .attr("y", -20);
 
 
   var vis = function(){
