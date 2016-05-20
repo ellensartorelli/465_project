@@ -39,7 +39,6 @@ var drawKey = function(parent, colorScale, nColors){
   //         // return format(extent[1]);
   //     });
 
-console.log(colorScale.domain());
 
 var makeDomain = function(){
 
