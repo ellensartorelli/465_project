@@ -1,5 +1,6 @@
 .line {
   stroke: black;
+  stroke-width: 2px;
 }
  /* axis */
 .axis text{
@@ -33,7 +34,7 @@ shape-rendering: crisp-edges;
 #pblack:hover{
 	background-color: #f9f5ec;
 	cursor: pointer;
-	
+
 }
 #pwhite{
 	background-color: white;

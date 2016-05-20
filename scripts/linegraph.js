@@ -110,19 +110,47 @@ var createLineGraph = function(parent, displayedMetric, width, height){
       .attr("class","group")
       .append("path");
 
-    groups.select("path")
+    var color = d3.scale.category10().domain(["1", "2", "3", "0"])
+
+    var paths = groups.select("path")
         .transition(1000)
         .attr("class", "line")
         .attr("d", function(d){return line(d.values)})
         .style("fill","None")
-        .style("stroke", function(d){return color(d.key)})
+        .style("stroke", function(d){return color(d.key)});
+        //.style("stroke-dasharray", function(d){return dashArray(d.key)}) //currently not using
 
-    function color(key) {
-      if( key == "0") return "black";
-      if (key == "1") return "red";
-      if (key == "2") return "blue";
-      if (key == "3") return "green";
-    }
+    var circles = groups.selectAll("circle")
+      .data(function(d){return d.values});
+    circles.exit().remove();
+    circles.enter().append("circle");
+
+    circles.transition(1000)
+    .attr({
+      cx: function(d) {return xScale(d.year)},
+      cy: function(d) {return yScale(d.value)},
+      r: 2.5,
+    }).style("fill", function(d) {return color(d.group)});
+
+    // var circles = chart.selectAll("circle")
+    //   .data(flattenedData);
+    // circles.exit().remove();
+    // circles.enter().append("cirlce");
+    //
+    // circles.attr({
+    //   cx: function(d) {return xScale(d.year)},
+    //   cy: function(d) {return yScale(d.value)},
+    //   r: 3,
+    // }).style("fill", function(d) {return color(d.key)});
+
+
+
+    // function color(key) {
+    //   if( key == "0") return "#7c0038"; //gentrified
+    //   if (key == "1") return "#121258"; //eligbile
+    //   if (key == "2") return "#064022"; //not elibible
+    //   if (key == "3") return "black";
+    // }
 
     //
   	// //draw circles
