@@ -42,16 +42,30 @@ var drawKey = function(parent, colorScale, nColors){
 console.log(colorScale.domain());
 
 var makeDomain = function(){
-  var first = 0;
-  // var first = colorScale.domain()[0]
+
+  if(colorScale.domain()[0] < 0){
+    var first = 0;
+  }else{
+    var first = colorScale.domain()[0];
+  }
   var second = colorScale.domain()[1];
   var increments = ((first - second)*-1)/nColors;
   var domain = [];
   for(var i = 1; i <= nColors; i++){
     domain.push(i*increments);
   }
-  console.log(domain);
   return domain;
+};
+
+var makeScaleDomain = function(){
+  var scaleDomain = [];
+  if(colorScale.domain()[0] < 0){
+    scaleDomain.push(0);
+  }else{
+    scaleDomain.push(colorScale.domain()[0]);
+  }
+  scaleDomain.push(colorScale.domain()[1]);
+  return scaleDomain;
 };
 
   var width = 860,
@@ -65,7 +79,7 @@ var threshold = d3.scale.threshold()
 
 // A position encoding for the key only.
 var x = d3.scale.linear()
-    .domain(colorScale.domain())
+    .domain(makeScaleDomain())
     .range([0, 400]);
 
 var xAxis = d3.svg.axis()
