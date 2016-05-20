@@ -57,22 +57,14 @@ var createMap = function(parent, width, height) {
   // create the path tool
   var path = d3.geo.path().projection(projection);
 
-
   // fetch geojson
   d3.json("../data/nyct2010_3.topojson",function (mapData) {
 
+    //TODO: CREATE A NEW TOPOJSON OUT OF THIS
   mapData.objects["nyct2010_3"].geometries = nest(mapData.objects["nyct2010_3"].geometries);
+  mapData.objects["nyct2010_3"].geometries = inflationAdjust(mapData.objects["nyct2010_3"].geometries);
 
   features = topojson.feature(mapData, mapData.objects["nyct2010_3"]).features;
-
-  // color_black.domain(d3.extent(features, function(d){return +d.properties.black[2010];}));
-
-  // color_mhval.domain(d3.extent(features,function(d){return +d.properties.metric[year];}));
-  // color_white.domain(d3.extent(features,function(d){return +d.properties.metric[year];}));
-  // color_mhinc.domain(d3.extent(features,function(d){return +d.properties.metric[year];}));
-  // color_pcol.domain(d3.extent(features,function(d){return +d.properties.metric[year];}));
-  // color_mrent.domain(d3.extent(features,function(d){return +d.properties.metric[year];}));
-
   features.forEach(function(element) {
     element.properties.pwhite = {};
     element.properties.pblack = {};
@@ -94,6 +86,8 @@ var createMap = function(parent, width, height) {
       }
     }
   });
+
+  mapData.objects["nyct2010_3"].geometries = identifyGentrified(mapData.objects["nyct2010_3"].geometries);
 
   var paths = canvas.selectAll("path")
   .data(features)
