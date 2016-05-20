@@ -148,7 +148,6 @@ var createMap = function(parent, width, height) {
 
 //TODO: FIGURE OUT DEFAULT VALUES
 var recolorMap = function() {
-  console.log("recolorMap being called");
   var colorScale = d3.scale.quantize();
 
   var nColors = 7;
@@ -161,12 +160,24 @@ var recolorMap = function() {
     mrent: colorbrewer.RdPu[nColors]
   };
 
-  console.log("ranging on metric: " + metric);
-  console.log("with year: " + year);
   colorScale.range(colors[metric]);
   colorScale.domain([d3.min(features, findMin), d3.max(features, findMax)]);
 
+  var viewingGentrification = false;
+
   function fillColor(d) {
+    if (viewingGentrification) {
+      if (d.properties.status[year] == "ineligible") {
+        return "#deebf7";
+      }
+      if (d.properties.status[year] == "eligible") {
+        return "#9ecae1";
+      }
+      if (d.properties.status[year] == "gentrified") {
+        return "#3182bd";
+      }
+      return "#d3d3d3";
+    }
     if (+d.properties[metric][year] > 0) {
       return colorScale(+d.properties[metric][year]);
     }
