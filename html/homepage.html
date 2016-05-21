@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../css/linegraph.css">
     <link rel="stylesheet" type="text/css" href="../css/toolbox.css">
     <script type="text/javascript" src="../scripts/nest.js"></script>
+    <script type="text/javascript" src="../scripts/exportData.js"></script>
     <script type="text/javascript" src="../scripts/inflationAdjust.js"></script>
     <script type="text/javascript" src="../scripts/identifyGentrified.js"></script>
     <script type="text/javascript" src="../scripts/map.js"></script>
@@ -42,10 +43,6 @@
 
     <div class="container">
 
-      <form onsubmit="download()">
-        <input type="submit" value="Download">
-      </form>
-
       <div id="top_L">
           <div id="map"></div>
       </div>
@@ -56,10 +53,19 @@
       </div>
 
       <div id="bottom_L">
+        <form onsubmit="download()">
+          <input type="submit" value="Download">
+        </form>
+        <div>
+          <table id="downloadList">
+          </table>
+        </div>
+          <input type="button" onclick="addSelectedTracts()" value="Add Selected Tracts">
             <div id="project_info">
             <h4>Export Data</h4>
             <p>The demographic data used in these visualizations originates from the <a href="http://www.s4.brown.edu/us2010/Researcher/LTBDDload/Default.aspx"><i>US2010 Longitudinal Tract Data Base</i></a> project of the Russell Sage Foundation at Brown University. Geographic data was downloaded from <a href="http://www1.nyc.gov/site/planning/data-maps/open-data/districts-download-metadata.page">New York's Department of City Planning.</a> </p>
             <p></p>
+
         </div>
       </div>
 
@@ -135,34 +141,7 @@
         lineGraphs[prop] = createLineGraph("#row"+curDiv, prop, 200, 200);
       }
 
-      function download() {
-        filename = "data.geojson";
-        text = '{ "type": "FeatureCollection", "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },"features":'
-        + JSON.stringify(selectedTracts.map(flatten))
-        + '}';
-    	  var element = document.createElement('a');
-    	  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    	  element.setAttribute('download', filename);
 
-    	  element.style.display = 'none';
-    	  document.body.appendChild(element);
-
-    	  element.click();
-
-    	  document.body.removeChild(element);
-    	}
-
-      function flatten(element) {
-        var newEle = {type: "Feature", properties: {}, geometry: element.geometry};
-        newEle.properties.tractID = element.properties.id;
-        newEle.properties.BoroName = element.properties.BoroName;
-        ["black", "mhinc_unadjusted", "mhv_unadjusted", "mrent_unadjusted", "col", "pop", "white", "mhinc", "mhv_adjusted_next", "mhv", "mrent", "pwhite", "pblack", "pcol", "pcol_percent_increase", "mhv_percent_increase"].forEach(function(attribute) {
-          ["1970", "1980", "1990", "2000", "2010"].forEach(function(year) {
-            newEle.properties[attribute+year] = element.properties[attribute][year];
-          });
-        });
-        return newEle;
-      }
 
     </script>
   </body>
