@@ -45,10 +45,10 @@ div.container{
 }
 #bottom_R h3{
   text-align: center;
-  display: inline-block 100%;
+/*  display: inline-block 100%;
   background: #7fcdbb;
   color: #323232;
-  line-height: 35px;
+  line-height: 35px;*/
 /*  border-bottom: 3px solid #7fcdbb;*/
 }
 #bottom_R p{

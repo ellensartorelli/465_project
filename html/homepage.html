@@ -56,10 +56,17 @@
       </div>
 
       <div id="bottom_L">
-            <div id="barchart"></div>
+            <div id="project_info">
+            <h4>Export Data</h4>
+            <p>The demographic data used in these visualizations originates from the <a href="http://www.s4.brown.edu/us2010/Researcher/LTBDDload/Default.aspx"><i>US2010 Longitudinal Tract Data Base</i></a> project of the Russell Sage Foundation at Brown University. Geographic data was downloaded from <a href="http://www1.nyc.gov/site/planning/data-maps/open-data/districts-download-metadata.page">New York's Department of City Planning.</a> </p>
+            <p></p>
+        </div>
       </div>
 
+
+    
       <div id="bottom_R">
+        <HR WIDTH="100%">
         <h3> About this Visualization</h3>
         <div id="project_info">
             <h4>Data Origin</h4>
@@ -105,13 +112,13 @@
 
       map_width = 700;
       map_height = 670;
-
+      createToolbox("#map");
       createMap("#map", map_width, map_height);
 
       createSlider("#map", (Math.floor(map_width/2))); //
       createMetric("#top_R");
 
-      createToolbox("#map");
+      // createToolbox("#map");
       var lineGraphs = {"mhinc": null, "pcol": null, "mhv": null, "pblack": null, "pwhite": null, "mrent": null};
       var i = 1;
       var curDiv = -1;
