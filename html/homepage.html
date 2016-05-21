@@ -52,7 +52,17 @@
             </div>
           <div id="map"></div>
 
-          <div id="heading_and_div">
+          <div id="howTo">
+            <h2 style="margin-left:25px;margin-bottom:10px">How-To</h2>
+            <div id="howTo_text">
+              <p><span style="font-weight:bold">Explore:</span> Use the interactive choropleth map to explore census data for New York. You can click on each line graph to change the displayed metric! </p>
+              <p><span style="font-weight:bold">Investigate:</span> Use the mousewheel to zoom into an area of interest. Clicking a tract will add it each line graph! </p>
+              <p><span style="font-weight:bold">Export:</span> Once you've found some interesting tracts, you can export them as geoJSON! </p>
+            </div>
+
+          </div>
+
+          <div id="exportData">
               <h2 style="margin-left:25px;margin-bottom:10px">Export Data</h2>
 
               <div id="download_paragraph">
@@ -88,33 +98,6 @@
       </div>
 
       <div id="bottom_L">
-
-<!--
-            <h2 style="margin-left:25px">Export Data</h2>
-                <div id="download_paragraph">
-            <p>Create a set of tracts to export as a geoJSON that includes polygon information for the census tracts and all of the census data used in this visualization. Either click "Add Selected Tracts" to add the map's selected tracts to the download set or double click on a single tract to add it.</p>
-
-        </div>
-
-        <div id="download_controls">
-          <h4 id="controls_header">Download Set</h4>
-
-            <div>
-              <table id="downloadList" class="downloadTable">
-                <tbody class="downloadTableBody">
-                </tbody>
-              </table>
-            </div>
-        </div>
-
-        <div id="download_buttons">
-          <input type="button" onclick="addSelectedTracts()" value="Add Selected Tracts">
-
-          <form onsubmit="download()">
-            <input type="submit" value="Download">
-          </form>
-        </div> -->
-
     </div>
 
 
