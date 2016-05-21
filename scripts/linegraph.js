@@ -126,38 +126,6 @@ var createLineGraph = function(parent, displayedMetric, width, height){
       r: 2.5,
     }).style("fill", function(d) {return color(d.group)});
 
-    // var circles = chart.selectAll("circle")
-    //   .data(flattenedData);
-    // circles.exit().remove();
-    // circles.enter().append("cirlce");
-    //
-    // circles.attr({
-    //   cx: function(d) {return xScale(d.year)},
-    //   cy: function(d) {return yScale(d.value)},
-    //   r: 3,
-    // }).style("fill", function(d) {return color(d.key)});
-
-
-
-    // function color(key) {
-    //   if( key == "0") return "#7c0038"; //gentrified
-    //   if (key == "1") return "#121258"; //eligbile
-    //   if (key == "2") return "#064022"; //not elibible
-    //   if (key == "3") return "black";
-    // }
-
-    //
-  	// //draw circles
-  	// groups.selectAll("circle")
-  	// 			.data(function(d){return d.values;})
-  	//   		.enter()
-  	//   		.append("circle")
-  	//   		.attr({cx:function(d){return xScale(+d.year);},
-  	//   						cy:function(d){ return yScale(+d.circumference);},
-  	//   						r:3	});
-
-
-
     xAxisG.call(xAxis);
     yAxisG.call(yAxis);
   };
