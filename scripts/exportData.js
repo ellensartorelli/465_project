@@ -64,7 +64,7 @@ function updateList() {
     .on("click", removeElement);
 
   rows.select("td")
-    .text(function(d){return d.properties.id})
+    .text(function(d){return d.properties.id});
 
 }
 
