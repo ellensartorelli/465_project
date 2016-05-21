@@ -34,12 +34,13 @@ div.container{
   float: left;
   margin-top: inherit;
   width:65%;
+  max-width: 800px;
 }
 #map{
   margin-left: 25px;
 }
 #top_R{
-  float: right;
+  float: left;
   margin-top: 0;
   width:35%;
 }
