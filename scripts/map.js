@@ -20,7 +20,8 @@ var createMap = function(parent, width, height) {
   svg.append("rect")
   .attr("class", "background")
   .attr("width", width)
-  .attr("height", height);
+  .attr("height", height)
+  .style("stroke", "black");
 
   // create the canvas
   var canvas = svg.append("g").attr("id", "canvas");
@@ -108,7 +109,35 @@ var createMap = function(parent, width, height) {
   .attr("d",path)
   .attr("class", "tract")
   .attr("id", function(d) {return "id" + d.properties.id;})
-  .on("click",clicked);
+  .on("click",clicked)
+  .on("mouseover", function(d){
+    var tractId = "#id" + d.properties.id;
+    var path = canvas.select(tractId);
+      if (!path.classed("inactive")) {
+        var formatPercent = d3.format("0.1f");
+        var formatNumber = d3.format(".0f");
+
+        var stationary_tooltip = d3.select("#stationary_tooltip");
+          stationary_tooltip.select("#valueA").text(d.properties.id);
+          stationary_tooltip.select("#valueB").text(d.properties.BoroName);
+          stationary_tooltip.select("#valueC").text(d.properties.NTAName);
+          stationary_tooltip.select("#variableD").text(metricDict[metric]);
+          stationary_tooltip.select("#valueD").text(function() {return (metric == "pcol" || metric == "pwhite" || metric == "pblack") ? formatPercent(d.properties[metric][year])+"%" : "$"+formatNumber(d.properties[metric][year]); });
+      };
+    });
+  paths.on("mouseout", clear_tooltip);
+
+ function clear_tooltip(){
+  console.log("CLEAR");
+    var stationary_tooltip = d3.select("#stationary_tooltip");
+      stationary_tooltip.select("#valueA").text("");
+      stationary_tooltip.select("#valueB").text("");
+      stationary_tooltip.select("#valueC").text("");
+      stationary_tooltip.select("#variableD").text("Metric Data");
+      stationary_tooltip.select("#valueD").text("");
+  };
+
+      
 
   year = 1970;
 

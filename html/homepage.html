@@ -39,11 +39,16 @@
     </div>
     <div id="names"><p>Ben Brown and Ellen Sartorelli</p>
     </div>
-    <HR WIDTH="100%">
 
     <div class="container">
 
       <div id="top_L">
+            <div id="stationary_tooltip">
+              <p><span id="variableA"><b>Tract Id</b></span>: <span id="valueA"></span></p>
+              <p><span id="variableB">Borough</span>: <span id="valueB"></span></p>
+              <p><span id="variableC">Neighborhood</span>: <span id="valueC"></span></p>
+              <p><span id="variableD">Metric Data</span>: <span id="valueD"></span></p>
+            </div>
           <div id="map"></div>
       </div>
 
@@ -62,6 +67,7 @@
         </div>
           <input type="button" onclick="addSelectedTracts()" value="Add Selected Tracts">
             <div id="project_info">
+
             <h4>Export Data</h4>
             <p>The demographic data used in these visualizations originates from the <a href="http://www.s4.brown.edu/us2010/Researcher/LTBDDload/Default.aspx"><i>US2010 Longitudinal Tract Data Base</i></a> project of the Russell Sage Foundation at Brown University. Geographic data was downloaded from <a href="http://www1.nyc.gov/site/planning/data-maps/open-data/districts-download-metadata.page">New York's Department of City Planning.</a> </p>
             <p></p>
@@ -116,9 +122,9 @@
         //reload data and redrwaw line graphs
       }
 
-      map_width = 775;
+      map_width = 700;
       map_height = 670;
-      createToolbox("#map");
+      // createToolbox("#map");
       createMap("#map", map_width, map_height);
 
       createSlider("#map", (Math.floor(map_width/2))); //

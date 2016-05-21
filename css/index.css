@@ -24,6 +24,9 @@ body{
   font-weight: bolder;
   padding-bottom: 10px;
 }
+h4{
+  font-family: 'Open Sans'
+}
 div.container{
 
 }
@@ -31,6 +34,9 @@ div.container{
   float: left;
   margin-top: inherit;
   width:65%;
+}
+#map{
+  margin-left: 25px;
 }
 #top_R{
   float: right;
@@ -68,4 +74,19 @@ a:visited {
 }
 #linegraph{
   display: table;
+}
+#stationary_tooltip{
+  position: absolute;
+  margin-top: 1px;
+  margin-left: 27px;
+  z-index: 9999;
+  font-size: 11px;
+  font-family: sans-serif;f;
+  font-weight: normal;
+  line-height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+}
+#stationary_tooltop p{
+  margin-left: 5px;
+/*  opacity: 0;*/
 }

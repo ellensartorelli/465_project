@@ -1,5 +1,4 @@
 function download() {
-  debugger;
   filename = "data.geojson";
   text = '{ "type": "FeatureCollection", "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },"features":'
   + JSON.stringify(downloadTracts.map(flatten))
