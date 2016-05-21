@@ -11,9 +11,18 @@ body{
 }
 #page_title p{
   text-align: center;
-  font-size: 3em;
+  font-size: 2.5em;
   margin: 0 auto;
   padding: 50px;
+  padding-bottom: 10px;
+  font-weight: bolder;
+}
+#names p{
+  text-align: center;
+  font-size: 1em;
+  margin: 0 auto;
+  font-weight: bolder;
+  padding-bottom: 10px;
 }
 div.container{
 

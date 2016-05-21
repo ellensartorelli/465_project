@@ -5,7 +5,9 @@ var createMetric = function(parent) {
 		var color = d3.scale.category10().domain(["Did not gentrify", "Ineligible", "Selected Tract(s)", "Gentrified"]);
 
 
-		var legend = d3.select(parent).select("#legend").append("ul");
+		var legend = d3.select(parent).select("#legend_div")
+			.append("ul")
+			.attr("class", "legend");
 
 		var list_item = legend.selectAll("li")
 			.data(tractType)
@@ -24,4 +26,16 @@ var createMetric = function(parent) {
 		list_item.append("span")
 			.text(function(d){return d;});
 
+
+		var legend_info = d3.selectAll("#legend_div")
+			.append("p")
+			.attr("id", "legend_description")
+			.text("Tract Status: As no universally accepted definition of gentrification exits, tracts have been classified into categories of 'Gentrified,' 'Ineligible' or 'Did not gentrify' based off Governing.com's methologdy, which draws heavily on the subject area's most popular technique that was devised by Columbia University professor Lance Freeman in 2005.")
+			.append("p")
+			.attr("id", "legend_link")
+			.style("font-weight", "bold")
+			.text("Click here to see Governing.com's methodology.")
+			.on("click", function() { window.open("http://www.governing.com/gov-data/gentrification-report-methodology.html"); });
 };
+
+
