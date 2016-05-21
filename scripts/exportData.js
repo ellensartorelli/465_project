@@ -14,8 +14,7 @@ function download() {
 
   document.body.removeChild(element);
 
-  downloadTracts = [];
-  updateList();
+  clearList();
 }
 
 function flatten(element) {
@@ -60,7 +59,8 @@ function updateList() {
   row.append("td")
     .append("input")
     .attr("type", "button")
-    .attr("value", "remove")
+    .attr("value", "X")
+    .attr("class", "removeButton")
     .on("click", removeElement);
 
   rows.select("td")
@@ -78,4 +78,9 @@ function removeElement(d) {
   if (index > -1) {
     downloadTracts.splice(index, 1);
   }
+}
+
+function clearList() {
+  downloadTracts = [];
+  updateList();
 }

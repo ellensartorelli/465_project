@@ -8,3 +8,13 @@
   font-family:sans-serif;
   font-size:10pt;
 }
+
+.removeButton {
+    background-color: #f4f4f4;
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+}
