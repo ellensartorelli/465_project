@@ -26,6 +26,10 @@
     <script type="text/javascript" src="../scripts/setTool.js"></script>
     <script type="text/javascript" src="../scripts/updateYear.js"></script>
     <script type="text/javascript" src="../scripts/clearSelection.js"></script>
+    <style> form * {
+  display: block;
+  margin: 10px;
+}</style>
 
   </head>
   <body>
@@ -34,6 +38,10 @@
     </div>
 
     <div class="container">
+
+      <form onsubmit="download()">
+        <input type="submit" value="Download">
+      </form>
 
       <div id="top_L">
           <div id="map"></div>
@@ -63,11 +71,13 @@
     </div>
 
     <script>
+      var originalFeatures;
       var gentrificationYear = "2010";
       var selectedTracts = [];
       var gentrifiedTracts = [];
       var eligibleTracts = [];
       var ineligibleTracts = [];
+      var downloadTracts = [];
       var features;
       var metricDict = {"mhinc": "Median Household Income", "pcol": "Percent w. College Degree", "mhv": "Median Home Value", "pblack": "Percent Black", "pwhite":"Percent White", "mrent": "Median Rent Price"};
       var metricList = [{abbr: "mhinc",name: "Median Household Income"}, {abbr: "pcol",name:"Percent w. College Degree"}, {abbr: "mhv",name:"Median Home Value"}, {abbr: "pblack",name:"Percent Black"}, {abbr: "pwhite",name:"Percent White"}, {abbr: "mrent",name:"Median Rent Price"}];
@@ -115,7 +125,34 @@
         lineGraphs[prop] = createLineGraph("#row"+curDiv, prop, 200, 200);
       }
 
-      //redrawVis();
+      function download() {
+        filename = "data.geojson";
+        text = '{ "type": "FeatureCollection", "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },"features":'
+        + JSON.stringify(selectedTracts.map(flatten))
+        + '}';
+    	  var element = document.createElement('a');
+    	  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    	  element.setAttribute('download', filename);
+
+    	  element.style.display = 'none';
+    	  document.body.appendChild(element);
+
+    	  element.click();
+
+    	  document.body.removeChild(element);
+    	}
+
+      function flatten(element) {
+        var newEle = {type: "Feature", properties: {}, geometry: element.geometry};
+        newEle.properties.tractID = element.properties.id;
+        newEle.properties.BoroName = element.properties.BoroName;
+        ["black", "mhinc_unadjusted", "mhv_unadjusted", "mrent_unadjusted", "col", "pop", "white", "mhinc", "mhv_adjusted_next", "mhv", "mrent", "pwhite", "pblack", "pcol", "pcol_percent_increase", "mhv_percent_increase"].forEach(function(attribute) {
+          ["1970", "1980", "1990", "2000", "2010"].forEach(function(year) {
+            newEle.properties[attribute+year] = element.properties[attribute][year];
+          });
+        });
+        return newEle;
+      }
 
     </script>
   </body>
