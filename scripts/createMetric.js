@@ -27,6 +27,21 @@ var createMetric = function(parent) {
 			.text(function(d){return d;});
 
 
+		legend
+			.append("input")
+			.attr("type", "button")
+			.attr("value", "Clear Selected Tracts")
+			.on("click", function(d) {
+				selectedTracts.forEach(function(tract) {
+					var tractId = "#id" + tract.properties.id;
+			    var path = d3.select("#canvas").select(tractId);
+					path.classed("selected", false);
+				});
+				selectedTracts = [];
+				redrawVis();
+			})
+
+
 		var legend_info = d3.selectAll("#legend_div")
 			.append("p")
 			.attr("id", "legend_description")
@@ -37,5 +52,3 @@ var createMetric = function(parent) {
 			.text("Click here to see Governing.com's methodology.")
 			.on("click", function() { window.open("http://www.governing.com/gov-data/gentrification-report-methodology.html"); });
 };
-
-

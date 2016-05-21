@@ -18,17 +18,6 @@ var createLineGraph = function(parent, displayedMetric, width, height){
     .attr("id", displayedMetric)
     .attr({width:width, height:height})
     .on("click", function(){
-          console.log(this.value+" is checked");
-          //SEND THIS VALUE TO SET THE METRIC TO BE DISPLAYED ON THE MAP
-          //SEND THIS VALUE TO HIGHLIGHT LINE IN LINE GRAPH
-          //SENT THIS VALUE TO BE HIGHLIGHTED BAR IN BAR CHART
-
-          // var update = updateKey(this.value);
-          // if(update == true){//clear legend
-          //  d3.selectAll("#key").remove();
-          //  makeLegend("#map", colorScale);
-          // };
-          //d3.selectAll("#key").remove();
           metric = this.id;
           recolorMap();
       });

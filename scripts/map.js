@@ -129,7 +129,6 @@ var createMap = function(parent, width, height) {
   paths.on("mouseout", clear_tooltip);
 
  function clear_tooltip(){
-  console.log("CLEAR");
     var stationary_tooltip = d3.select("#stationary_tooltip");
       stationary_tooltip.select("#valueA").text("");
       stationary_tooltip.select("#valueB").text("");
@@ -203,6 +202,7 @@ var createMap = function(parent, width, height) {
 
 //TODO: FIGURE OUT DEFAULT VALUES
 var recolorMap = function() {
+  year = timeline_slider.value();
   var colorScale = d3.scale.quantize();
 
   var nColors = 7;
