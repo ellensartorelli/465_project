@@ -92,8 +92,9 @@ var svg = d3.select(parent).select("#key")
     .attr("height", height);
 
 var g = svg.select("g")
-    .attr("class", "key");
-    
+    .attr("class", "key")
+    .attr("transform", "translate(0, 25)");
+
 var rects = g.selectAll("rect")
     .data(threshold.range().map(function(color) {
       var d = threshold.invertExtent(color);
