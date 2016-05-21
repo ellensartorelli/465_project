@@ -63,7 +63,8 @@ function updateList() {
     .attr("value", "remove")
     .on("click", removeElement);
 
-  rows.select("td").text(function(d){return d.properties.id});
+  rows.select("td")
+    .text(function(d){return d.properties.id})
 
 }
 

@@ -110,6 +110,7 @@ var createMap = function(parent, width, height) {
   .attr("class", "tract")
   .attr("id", function(d) {return "id" + d.properties.id;})
   .on("click",clicked)
+  .on("dblclick", doubleClicked)
   .on("mouseover", function(d){
     var tractId = "#id" + d.properties.id;
     var path = canvas.select(tractId);
@@ -137,7 +138,7 @@ var createMap = function(parent, width, height) {
       stationary_tooltip.select("#valueD").text("");
   };
 
-      
+
 
   year = 1970;
 
@@ -172,6 +173,14 @@ var createMap = function(parent, width, height) {
         redrawVis();
       //}
     }
+  }
+
+  function doubleClicked(tract) {
+    d3.event.stopPropagation();
+    if (downloadTracts.indexOf(tract) == -1) {
+      downloadTracts.push(tract);
+    }
+    updateList();
   }
 
   /**
