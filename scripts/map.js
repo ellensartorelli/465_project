@@ -195,7 +195,6 @@ var recolorMap = function() {
       }
       return "#d3d3d3";
     }
-    console.log(year);
     if (+d.properties[metric][year] > 0) {
       return colorScale(+d.properties[metric][year]);
     }
