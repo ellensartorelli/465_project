@@ -59,27 +59,32 @@
       </div>
 
       <div id="bottom_L">
-        <div id="export_paragraph">
+        <div id="download_paragraph">
 
             <h2>Export Data</h2>
             <p>Create a set of tracts to export as a geoJSON that includes polygon information for the census tracts and all of the census data used in this visualization. Either click "Add Selected Tracts" to add the map's selected tracts to the download set or double click on a single tract to add it.</p>
 
         </div>
-        <div id="download_controls">
-          <h4>Download Set</h4>
 
-            <form onsubmit="download()">
-              <input type="submit" value="Download">
-            </form>
+        <div id="download_controls">
+          <h4 style="margin-bottom: 5px">Download Set</h4>
+
             <div>
               <table id="downloadList" class="downloadTable">
                 <tbody class="downloadTableBody">
                 </tbody>
               </table>
             </div>
-              <input type="button" onclick="addSelectedTracts()" value="Add Selected Tracts">
+        </div>
 
-      </div>
+        <div id="download_buttons">
+          <input type="button" onclick="addSelectedTracts()" value="Add Selected Tracts">
+
+          <form onsubmit="download()">
+            <input type="submit" value="Download">
+          </form>
+        </div>
+
     </div>
 
 

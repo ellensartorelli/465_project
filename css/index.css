@@ -90,7 +90,7 @@ a:visited {
   margin-left: 5px;
 /*  opacity: 0;*/
 }
-#export_paragraph{
+#download_paragraph{
   margin-left: 25px;
   float: left;
   width: 30%;
@@ -99,6 +99,11 @@ a:visited {
 }
 #download_controls{
   float: left;
-  margin-left: 25px;
+  margin-left: 60px;
 /*  background-color: #f0f0f0;*/
+}
+#download_buttons{
+  float: left;
+  margin-left: 20px;
+  margin-top: 35px;
 }
