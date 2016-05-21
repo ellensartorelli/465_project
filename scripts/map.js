@@ -110,6 +110,8 @@ var createMap = function(parent, width, height) {
   .attr("id", function(d) {return "id" + d.properties.id;})
   .on("click",clicked);
 
+  year = 1970;
+
   recolorMap();
   redrawVis();
   });
@@ -193,6 +195,7 @@ var recolorMap = function() {
       }
       return "#d3d3d3";
     }
+    console.log(year);
     if (+d.properties[metric][year] > 0) {
       return colorScale(+d.properties[metric][year]);
     }
