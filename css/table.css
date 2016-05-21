@@ -1,3 +1,9 @@
+.downloadTableBody {
+  display: block;
+  overflow: auto;
+  height: 50px;
+}
+
 .downloadTable, .downloadTable td {
   font-family:sans-serif;
   font-size:10pt;

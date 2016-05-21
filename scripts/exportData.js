@@ -50,7 +50,7 @@ function arrayUnique(array) {
 }
 
 function updateList() {
-  var rows = d3.select("#downloadList")
+  var rows = d3.select("#downloadList").select("tbody")
     .selectAll("tr")
     .data(downloadTracts);
   rows.exit().remove();
