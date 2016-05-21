@@ -110,8 +110,20 @@ var rects = g.selectAll("rect")
     .attr("width", function(d) { return x(d[1]) - x(d[0]); })
     .style("fill", function(d) { return threshold(d[0]); });
 
-g.call(xAxis).append("text")
+  g.call(xAxis);
+  // g.append("text")
+  //   .attr("class", "caption")
+  //   .attr("y", -6)
+  //   .text(metricDict[metric]);
+
+  var title = g.selectAll("#key_title").data(["data"]);
+  title.enter().append("text");
+  title.exit().remove();
+  title.text(metricDict[metric])
     .attr("class", "caption")
-    .attr("y", -6);
+    .attr("y", -6)
+    .attr("id", "key_title");
+
+
 
 };
