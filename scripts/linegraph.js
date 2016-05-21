@@ -1,7 +1,7 @@
 var createLineGraph = function(parent, displayedMetric, width, height){
   var dataset;
 
-  var margins = {top:30, bottom:50, left: 60, right:50};
+  var margins = {top:45, bottom:50, left: 60, right:50};
   var chartWidth = width - margins.left - margins.right;
   var chartHeight = height - margins.top - margins.bottom;
 
@@ -35,7 +35,7 @@ var createLineGraph = function(parent, displayedMetric, width, height){
 
 
   var chart = svg.append("g")
-    .attr("transform", "translate("+margins.left + "," + margins.top + ")");
+    .attr("transform", "translate("+margins.left + "," + margins.top +  ")");
 
   var xAxisG = chart.append("g")
     .attr({"class": "axis",
