@@ -68,13 +68,25 @@
         </div>
           <input type="button" onclick="addSelectedTracts()" value="Add Selected Tracts">
             <div id="project_info">
+        <div id="export_paragraph">
 
-            <h4>Export Data</h4>
-            <p>The demographic data used in these visualizations originates from the <a href="http://www.s4.brown.edu/us2010/Researcher/LTBDDload/Default.aspx"><i>US2010 Longitudinal Tract Data Base</i></a> project of the Russell Sage Foundation at Brown University. Geographic data was downloaded from <a href="http://www1.nyc.gov/site/planning/data-maps/open-data/districts-download-metadata.page">New York's Department of City Planning.</a> </p>
-            <p></p>
+            <h2>Export Data</h2>
+            <p>Create a set of tracts to export as a geoJSON that includes polygon information for the census tracts and all of the census data used in this visualization. Either click "Add Selected Tracts" to add the map's selected tracts to the download set or double click on a single tract to add it.</p>
 
         </div>
+        <div id="download_controls">
+
+            <form onsubmit="download()">
+              <input type="submit" value="Download">
+            </form>
+            <div>
+              <table id="downloadList">
+              </table>
+            </div>
+              <input type="button" onclick="addSelectedTracts()" value="Add Selected Tracts">
+
       </div>
+    </div>
 
 
 
