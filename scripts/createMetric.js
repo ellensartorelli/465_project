@@ -2,7 +2,11 @@ var createMetric = function(parent) {
 
 		var tractType = ["Did not gentrify", "Ineligible", "Selected Tract(s)", "Gentrified"];
 
-		var color = d3.scale.category10().domain(["Did not gentrify", "Ineligible", "Selected Tract(s)", "Gentrified"]);
+		var new_cat10 = ["#1f77b4", "#2ca02c","#FFD700","#d62728"]
+    // var color = d3.scale.category10().domain(["1", "2", "3", "0"])
+    var color = d3.scale.ordinal()
+      .range(new_cat10)
+			.domain(["Did not gentrify", "Ineligible", "Selected Tract(s)", "Gentrified"]);
 
 
 		var legend = d3.select(parent).select("#legend_div")

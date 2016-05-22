@@ -104,7 +104,12 @@ var createLineGraph = function(parent, displayedMetric, width, height){
       .attr("class","group")
       .append("path");
 
-    var color = d3.scale.category10().domain(["1", "2", "3", "0"])
+
+    var new_cat10 = ["#1f77b4", "#2ca02c","#FFD700","#d62728"]
+    // var color = d3.scale.category10().domain(["1", "2", "3", "0"])
+    var color = d3.scale.ordinal()
+      .range(new_cat10)
+      .domain(["1", "2", "3", "0"]);
 
     var paths = groups.select("path")
         .transition(1000)

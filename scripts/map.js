@@ -36,18 +36,6 @@ var createMap = function(parent, width, height) {
     .scaleExtent([1, 20])
     .on("zoom", zoomed);
 
-    //
-    // var color = d3.scale.quantile()
-    // .range(colorScheme[5]);
-
-
-  // colors.push(color_mhinc);
-  // colors.push(color_mhval);
-  // colors.push(color_white);
-  // colors.push(color_black);
-  // colors.push(color_mrent);
-  // colors.push(color_pcol);
-
   // load the zoom behavior into the SVG
   svg.call(zoom)
   .call(zoom.event);
