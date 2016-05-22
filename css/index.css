@@ -48,7 +48,7 @@ div.container{
   float: left; margin-top: inherit; width:100%;
 }
 #bottom_R{
-  float: right; margin-top: inherit; width:100%;
+  float: right; margin-top: inherit; width:100%; position: absolute; margin-top: 1000px;
 }
 #bottom_R h3{
   text-align: center;
@@ -103,9 +103,10 @@ a:visited {
 /*  margin-top: 0px;*/
 }
 #download_controls{
-  float: left;
-  margin-left: 60px;
+  position: absolute;
+  margin-left: 500px;
   background-color: #f4f4f4;
+  margin-top: 737px;
 /*  border: solid black 1px;*/
 }
 #controls_header{
@@ -116,13 +117,16 @@ a:visited {
 /*  background-color: #f4f4f4;*/
 }
 #download_buttons{
-  float: left;
-  margin-left: 10px;
-  /*margin-top: 35px;*/
+  position: absolute;;
+  margin-left: 675px;
+  margin-top: 737px;
 }
 #exportData{
-  margin-top: -20px;
+  margin-top: 675px;
+  margin-left: 250px;
+  position: absolute;;
 }
 #howTo{
-  margin-top: -20px;
+  margin-top: 675px;
+  position: absolute;
 }

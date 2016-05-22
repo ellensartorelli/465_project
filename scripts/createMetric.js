@@ -45,7 +45,7 @@ var createMetric = function(parent) {
 		var legend_info = d3.selectAll("#legend_div")
 			.append("p")
 			.attr("id", "legend_description")
-			.text("Tract Status: As no universally accepted definition of gentrification exits, tracts have been classified into categories of 'Gentrified,' 'Ineligible' or 'Did not gentrify' based off Governing.com's methologdy, which draws heavily on the subject area's most popular technique that was devised by Columbia University professor Lance Freeman in 2005. categories of 'Gentrified,' 'Ineligible' or 'Did not gentrify' based off Governing.com's methologdy, which draws heavily on")
+			.text("Tract Status: As no universally accepted definition of gentrification exits, tracts have been classified into categories of 'Gentrified,' 'Ineligible' or 'Did not gentrify' based off Governing.com's methodology. Governing.com's methodology draws heavily on the 2005 technique that was developed by a Columbia University professor named Lance Freeman, the most-cited expert in the field.")
 			.append("p")
 			.attr("id", "legend_link")
 			.style("font-weight", "bold")
