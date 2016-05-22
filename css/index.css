@@ -130,3 +130,7 @@ a:visited {
   margin-top: 675px;
   position: absolute;
 }
+#project_info p{
+  font-size: 15px;
+  font-family: sans-serif;
+}
